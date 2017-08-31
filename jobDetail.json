@@ -1,0 +1,112 @@
+{
+  "requisition": {
+    "addDateAlt": "",
+    "addTime": 1497342424119,
+    "ageGroupAlt": null,
+    "age_group": "Kindergarten & Pre-School\nPrimary/Elementary",
+    "applyLink": "https://app.jobvite.com/CompanyJobs/Careers.aspx?k=Apply&j=oRz64fwk&c=qQxaVfwc",
+    "category": "Foreign Language or International School",
+    "channelList": null,
+    "companyId": "qQxaVfwc",
+    "createdBy": {
+      "email": "jerry.zhang@careerchina.com",
+      "firstName": "Jerry",
+      "lastName": "zhang",
+      "userId": "sT6pZhw9",
+      "userName": ""
+    },
+    "customField": [
+      {
+        "fieldCode": "institute_xxhcvfw5",
+        "key": "Institute",
+        "value": "A+W Academy"
+      },
+      {
+        "fieldCode": "subject_xwscvfwf",
+        "key": "Subject",
+        "value": "Physical Education"
+      },
+      {
+        "fieldCode": "age_group_xxscvfwg",
+        "key": "Age Group",
+        "value": "Kindergarten & Pre-School\nPrimary/Elementary"
+      }
+    ],
+    "department": "A+W Academy",
+    "description": "<p><strong><u>Job Descriptions<br /><br /></u></strong></p><ol><li>To be responsible as a PE teacher</li><li>To provide a nurturing, caring and supportive environment for students</li><li>To enhance the improvement of PE skills for all students</li><li>To support the use of collaborate group work during class time</li><li>To participate actively in curriculum writing</li><li>To work closely and cooperatively with the other teachers</li><li>Whenever possible, to become involved in interdisciplinary teaching with teachers from other departments</li><li>To promote cross-cultural understanding among the students</li><li>To maintain a strong, positive and informative relationship with parents and prepare for and participate in all parent meetings</li><li>To actively engage in professional development</li><li>Occasionally to cover classes for a colleague</li><li>To manage a study hall if needed</li><li><span>To offer at least one extra-curricular activity to the students and be committed to the ideal of a holistic education for all</span></li><li><span>To assist with any other duties, tasks or jobs as may be reasonably requested by the management</span></li></ol><p>&nbsp;</p><p><strong><u><span>Essential Requirements:</span></u></strong></p><ol><li>Native English speaker with excellent verbal and written English language skills</li><li><span>Bachelor&rsquo;s degree of PE related subjects</span></li><li>Teacher Certification/ Qualification</li><li><span>An effective teaching practitioner</span></li><li><span>Strong working knowledge of an international curriculum</span></li><li><span>Committed to the protection and safeguarding of children </span></li><li><span>Energy, enthusiasm and a sense of humour</span></li><li><span>Evidence of a commitment to the value of team work </span></li><li><span>To have excellent organisational, interpersonal and communication skills.</span></li></ol>",
+    "detailLink": "https://app.jobvite.com/CompanyJobs/Job.aspx?j=oRz64fwk",
+    "eId": "oRz64fwk",
+    "expirationDate": 0,
+    "hiringManagers": [
+      {
+        "email": "eleanor.boniface@careerchina.com",
+        "firstName": "Eleanor",
+        "lastName": "Boniface",
+        "userId": "s3eX5hw5",
+        "userName": "eleanor.boniface@careerchina.com"
+      },
+      {
+        "email": "mag.sun@careerchina.com",
+        "firstName": "Mag",
+        "lastName": "Sun",
+        "userId": "s2eX5hw4",
+        "userName": "mag.sun@careerchina.com"
+      },
+      {
+        "email": "paul.chen@careerchina.com",
+        "firstName": "paul",
+        "lastName": "chen",
+        "userId": "stqK9hwy",
+        "userName": "paul.chen@careerchina.com"
+      }
+    ],
+    "hot": "",
+    "id": "593fa1d863cd0aec1df55bdc",
+    "inst": {
+      "accessURL": "",
+      "addTime": null,
+      "careerchinaWebSiteB": "",
+      "careerchinaWebSiteC": "",
+      "customer": null,
+      "employeeScale": ">2000",
+      "extend3": "extend3",
+      "extend4": "extend4",
+      "extend5": "extend5",
+      "frontendVisibleStatus": 1,
+      "iaList": null,
+      "instituteIdCount": null,
+      "instituteName": "First Leap China",
+      "institutePositionList": null,
+      "institutePositionSize": null,
+      "instituteTag": "A business unit of TAL Education Group (NYSE, TAL), established in Beijing in 2009.",
+      "institutionId": 1,
+      "introduction": "<p>First Leap English, a business unit of TAL Education Group (NYSE, TAL), established in Beijing in 2009, is flourishing and expanding across China, with over 30, 000 students, and top 3 brand recognition in the Chinese education industry. Created to provide much-needed quality afterschool English training for children aged 1.5 – 15 years old, in a fun, motivating and entirely English speaking environment.&nbsp;</p><p><br/></p><p>First Leap provides children with high quality and full scene English education. The school has developing and innovating internationally leading educational products and services since 2008. Which committed to providing scientific parenting solutions for Chinese families. Teaching English is not only purpose, but also encourage and cultivate children’s self-confidence, happiness, and comprehensive quality leadership, with a new generation of global competitiveness.\t</p><p><br/></p><p>First Leap has opened more than 80 teaching centers in more than 30 cities in China. The full curriculum system is based on the CLIL education concept, the high-tech education method, which developed and innovated by domestic and foreign experts. The curriculum covers young children stage, pre-school stage, primary and junior high school stage, which help children get through overseas high school.\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t</p>",
+      "logoAlt": "Test",
+      "logoURL": "http://material.careerchina.com/img/f76d996e-9119-4642-a5ab-4940d2cc0b6e.jpg",
+      "orderNumber": "1",
+      "pictureURL": "",
+      "startingYear": "2009",
+      "updateTime": null,
+      "videoURL": "",
+      "website": "www.firstleapchina.com"
+    },
+    "institute": "A+W Academy",
+    "instituteId": "1",
+    "instituteName": "",
+    "jobState": "Open",
+    "jobType": "Full-Time",
+    "lastUpdatedDate": 1495264255603,
+    "list": null,
+    "locationCity": "Beijing",
+    "locationCountry": "China",
+    "modifyTime": 0,
+    "openings": "",
+    "postingType": "External",
+    "requisitionId": "AW10006(old)",
+    "sentDate": 1492066004413,
+    "status": 1002,
+    "subject": "Physical Education",
+    "title": "PE Teacher in A+W Academy",
+    "updateTime": 1498100933964
+  }
+}

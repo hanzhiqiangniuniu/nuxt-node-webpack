@@ -1,0 +1,141 @@
+<template>
+  <div class="lifeClass">
+    <v-nav></v-nav>
+    <v-seNav></v-seNav>
+    <div class="auto">
+      <el-carousel :interval="4000" type="card">
+        <el-carousel-item  v-for="carousel in this.carousels">
+          <div class="slide" @click="only(carousel.urlWords)">
+            <img :src="carousel.faceImg" :alt="carousel.faceImgAlt">
+            <div class="bannerMask"></div>
+            <div class="bannerDes">
+              <h2 class="blogTitle">{{carousel.title}}</h2>
+              <p class="blogDes">{{carousel.description}}</p>
+            </div>
+          </div>
+        </el-carousel-item>
+      </el-carousel>
+
+      <div class="blogClass">
+        <ul class="blog-tab">
+          <li class="blog-list clear" v-for="detailData in this.detailDatas">
+            <div class="listL">
+              <a class="title" href="javascript:;" target="_blank" @click="blogDetail(detailData.urlWords)">
+                {{detailData.title}}
+            </a>
+              <div class="author">
+                <span class="authorName">{{detailData.authorName}} /&nbsp</span>
+                <span class="timeStr">{{detailData.updateTimeStr}}</span>
+              </div>
+              <div class="bgLine"></div>
+              <P class="listField">
+                {{detailData.description}}
+            </P>
+            </div>
+            <div class="listImg">
+              <img :src="detailData.faceImg" :alt="detailData.faceImgAlt">
+            </div>
+          </li>
+        </ul>
+        <!--<div class="more" v-show="more" id="more">
+          <a href="javascript:;">more</a>
+          <i class="downIc"></i>
+        </div>
+        <div class="loading" v-show="loading">
+        </div>-->
+      </div>
+      <p class="loading" v-show="load">
+        <i class="loadIcon"></i>
+        <span class="loadText">Loading…Please wait</span>
+      </p>
+    </div>
+    <v-goTop></v-goTop>
+    <v-footer></v-footer>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import $ from 'jquery'
+  import Vue from 'vue'
+  import VueResource from 'vue-resource'
+  import '../assets/css/reset.min.css'
+  import '../assets/css/blogList.css'
+  import interfaceStr from '../assets/js/interface.js'
+  import addthis from '../assets/js/addthis.js';
+  import nav from '../components/public/nav/nav'
+  import seNav from '../components/public/blog-seNav/blog-seNav'
+  import footer from '../components/public/footer/footer'
+  import goTop from '../components/public/goTop/goTop'
+  var addthis_share = {};
+  if (process.BROWSER_BUILD) {
+    const VueAwesomeSwiper = require('vue-awesome-swiper/ssr');
+    const Carousel = require('element-ui');
+    Vue.use(VueAwesomeSwiper);
+    Vue.use(VueResource);
+    Vue.use(Carousel)
+  }
+  export default{
+    data(){
+      return{
+        detailDatas:[],
+        carousels:[],
+        carousels1:'',
+        /*more:false,
+         loading:false,*/
+        one:true,
+        load:false
+      }
+    },
+    head:{
+      link:[
+        { rel: 'stylesheet', href: 'https://unpkg.com/element-ui/lib/theme-default/index.css' }
+      ],
+      title:'travel in China',
+      meta:[
+        { name: 'keywords', content: 'travel in china'},
+        { name: 'description', content: 'Explore ancient civilizations and exotic lands when you travel in China (and to nearby countries).'},
+        { property: 'og:url', content: 'www.careerchina.com/travel-in-China'},
+        { property: 'og:type', content: 'article'},
+        { property: 'og:image', content: 'http://material.careerchina.com/img/095b84fb-7f3a-46d5-b6b0-9b037278c5fc.jpg'},
+        { name: 'twitter:card', content: 'http://material.careerchina.com/img/095b84fb-7f3a-46d5-b6b0-9b037278c5fc.jpg'},
+        { name: 'twitter:creator', content: 'careerchina'},
+        { name: 'twitter:image', content: 'http://material.careerchina.com/img/095b84fb-7f3a-46d5-b6b0-9b037278c5fc.jpg'},
+        { itemprop: 'image', content: 'http://material.careerchina.com/img/095b84fb-7f3a-46d5-b6b0-9b037278c5fc.jpg'},
+      ]
+    },
+    components:{
+      'v-nav':nav,
+      'v-footer':footer,
+      'v-goTop':goTop,
+      'v-seNav':seNav
+    },
+    methods:{
+      blogDetail(urlWords){
+        window.open('/'+urlWords+'.html');
+      },
+      only(urlWords){
+        window.open('/'+urlWords+'.html');
+      }
+    },
+    mounted(){
+      let page=1;
+      this.$http.get('http://'+interfaceStr+'/cc/blog/pageBlogs/getByCategoryId.action?rowCount=10&page='+page+'&categoryId=5').then(function (response) {
+        this.carousels=response.body.hotdata;
+        this.detailDatas=response.body.data.data;
+        this.carousels1=response.body.hotdata[0];
+        console.log(this.detailDatas)
+        /*if(this.detailDatas.length>=10){
+         this.more=true;
+         }
+         if(this.carousels.length===1){
+         this.one=false
+         }*/
+      });
+      addthis();
+    }
+  }
+</script>
+
+<style>
+
+</style>
