@@ -46,10 +46,10 @@
     width: 50px;
     height: 50px;
     position: fixed;
-    right: 40px;
-    bottom: 460px;
+    right: 20px;
+    bottom: 120px;
     display: none;
-    z-index: 99;
+    z-index: 117;
     cursor: pointer;
     border-radius: 2px;
   }
@@ -58,12 +58,19 @@
     display: block;
     width: 100%;
     height: 100%;
-    background: url("./web-button-top-normal.png") no-repeat center;
+    background: url("./web-button-top-normal.svg") no-repeat center;
     background-size: cover;
   }
 
   .goTop .normal:hover {
-    background: url("./web-button-top-press.png") no-repeat center;
+    background: url("./web-button-top-press.svg") no-repeat center;
     background-size: cover;
+  }
+  @media (max-width: 415px) {
+    .goTop{
+      width: 38px;
+      height: 38px;
+      right:12px;
+    }
   }
 </style>

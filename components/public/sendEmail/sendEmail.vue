@@ -4,17 +4,26 @@
       Sign Up for Our Free
       Newsletters
     </p>
-    <input type="text" class="eI" placeholder="Email" v-model="inputText" @focus="focus">
-    <p class="format" v-show="emailState">Please submit in right format.</p>
-    <p class="success" v-show="success">Thank you for signing up!</p>
-    <div class="mask" v-show="mask"></div>
-    <div class="btnBox">
-      <button class="btnText" @click="sign">Sign Up</button>
+    <div class="inputBox">
+      <input type="text" class="eI" placeholder="Email" v-model="inputText" @focus="focus">
+      <div class="worBox" v-show="emailState">
+        <span class="sj"></span>
+        <span class="worWord">Please submit in right format.</span>
+      </div>
+      <div class="suBox" v-show="success">
+        <span class="sj"></span>
+        <span class="suWord">We get you! Thanks for joining us!</span>
+      </div>
+      <div class="mask" v-show="mask"></div>
+      <div class="btnBox">
+        <button class="btnText" @click="sign">Sign Up</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import interfaceStr from '../../../assets/js/interface.js';
   export default{
     name:'sendEmail',
     data(){
@@ -35,7 +44,7 @@
               this.emailState=true
           }else {
             let _this=this;
-            _this.$http.post('http://devb.careerchina.com/cc/to/c/storageEmail.action',{'email':_this.inputText}).then(function(response){
+            _this.$http.post(interfaceStr+'/cc/to/c/storageEmail.action',{'email':_this.inputText}).then(function(response){
               if(response.body.insertResult===true){
                 _this.success=true;
                 window.clearTimeout(timer);
@@ -55,7 +64,6 @@
 
 <style scoped>
   .sing {
-    position: relative;
     width: 100%;
     font-size: 0;
   }
@@ -63,7 +71,6 @@
   .sing .singTitle {
     margin: 85px 0 40px 0;
     text-align: center;
-    font-family: AvenirNext-Regular;
     font-size: 20px;
     color: #FFFFFF;
     letter-spacing: 0;
@@ -93,9 +100,9 @@
   }
   .sing .mask{
     position: absolute;
-    top: 97px;
+    top: 0;
     left: 18px;
-    width: 209px;
+    width: 258px;
     height: 130px;
   }
   .sing .btnBox .btnText {
@@ -105,7 +112,6 @@
     height: 44px;
     line-height: 44px;
     font-size: 14px;
-    font-family: AvenirNext-DemiBold;
     color: #fff;
     text-align: center;
     cursor: pointer;
@@ -115,25 +121,66 @@
     border-radius: 2px;
   }
   .sing .btnBox .btnText:hover{
-    background: #11b85b;
+    background: #000935;
   }
-  .sing .format,.success{
-    margin-top: 8px;
-    margin-left: 40px;
-    width: 100%;
-    font-size: 12px;
+  .inputBox{
+    position: relative;
   }
-  .sing .format{
-    color: #f7593f;
+  .inputBox .worBox, .suBox {
+    position: absolute;
+    left: 39px;
+    top: -57px;
+    padding: 0 10px;
+    height: 40px;
+    border-radius: 5px;
   }
-  .sing .success{
-    color: #0ed666;
+
+  .inputBox .worBox {
+    font-size: 0;
+    z-index: 100;
+    background: #f7593f;
+  }
+
+  .inputBox .worBox .sj {
+    position: absolute;
+    bottom: -16px;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-top-color: #f7593f;
+  }
+  .inputBox .worBox .worWord {
+    font-size: 14px;
+    color: #fff;
+    line-height: 40px;
+  }
+
+  .inputBox .suBox {
+    text-align: center;
+    background: #0ed666;
+  }
+
+  .inputBox .suBox .sj {
+    position: absolute;
+    bottom: -16px;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-top-color: #0ed666;
+  }
+
+  .inputBox .suBox .suWord {
+    font-size: 14px;
+    color: #fff;
+    line-height: 40px;
   }
   @media (max-width: 768px) {
     .sing .singTitle{
       display: inline-block;
       line-height: 100px;
-      margin: 0 34px 0 20px;
+      margin: 0 30px 0 10px;
     }
     .sing .eI{
       display: inline-block;
@@ -149,19 +196,16 @@
       width: 100px;
     }
     .sing .mask{
-      top: 0;
-      left: 300px;
+      left: 0;
       width: 380px;
       height: 100px;
     }
-    .sing .format,.success{
-      position: absolute;
-      bottom: 10px;
-      left: 319px;
-      z-index: 99;
-      font-size: 12px;
+    .inputBox{
+      display: inline-block;
     }
-
+    .inputBox .worBox, .suBox{
+      left:0;
+    }
   }
   @media (max-width: 415px) {
     .sing{
@@ -171,10 +215,6 @@
       line-height: inherit;
       margin: 0 0 16px 0;
     }
-    .sing .format,.success{
-      bottom: 8px;
-      left:-20px;
-    }
     .sing .eI{
       width: 60%;
       margin-right: 10%;
@@ -183,6 +223,9 @@
       width: 30%;
     }
     .sing .btnBox .btnText{
+      width: 100%;
+    }
+    .inputBox{
       width: 100%;
     }
   }

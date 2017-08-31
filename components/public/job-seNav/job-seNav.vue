@@ -60,7 +60,7 @@
   .seNav .seNavTab .seNavList .bor-bot{
     position: absolute;
     left: 50%;
-    bottom: 1px;
+    bottom: 0;
     margin-left: -12px;
     opacity: 0.5;
     background: #4B4DFF;

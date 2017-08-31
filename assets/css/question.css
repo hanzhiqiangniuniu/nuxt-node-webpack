@@ -1,0 +1,131 @@
+.quesBox{
+  margin:130px auto;
+  width: 1040px;
+}
+.quesBox h2{
+  margin-bottom: 14px;
+  font-size: 26px;
+  color: #333435;
+  text-align: center;
+}
+.visa-line {
+  display: block;
+  width: 60px;
+  height: 2px;
+  background-image: linear-gradient(135deg, #19DFE8 0%, #4889FF 54%, #4B4DFF 100%);
+  margin: auto;
+}
+.whatIs{
+  margin-top: 106px;
+  width: 100%;
+}
+.whatIs .list_Box{
+  float: left;
+  width: 303px;
+}
+.whatIs .list_Box .quesTab{
+  width: 100%;
+  border-left:1px solid #E8E8E8;
+}
+.whatIs .list_Box .quesTab .quesList{
+  padding-left: 23px;
+  margin-bottom: 30px;
+  width: 100%;
+}
+.whatIs .list_Box .quesTab .quesList:hover a{
+  color: #4B4DFF;
+}
+.whatIs .list_Box .quesTab .quesList a{
+  display: block;
+  font-size: 14px;
+  color: #333435;
+  line-height: 24px;
+}
+.whatIs .list_Box .quesTab li.bg{
+  border-left: 4px solid #4B4DFF;
+  padding-left: 19px;
+}
+.answerBox{
+  float: right;
+  width: 680px;
+}
+.answerBox .anTab{
+  width: 100%;
+}
+.answerBox .anTab .anList{
+  width: 100%;
+  padding: 30px 20px;
+  border-top: 1px solid #E9E9E9;
+}
+.answerBox .anTab .an-active{
+  background: #F8FAFC;
+}
+.answerBox .anTab .anList:last-child{
+  border-bottom: 1px solid #E9E9E9;
+}
+.answerBox .anTab .anList h4{
+  margin-bottom: 16px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333435;
+}
+.answerBox .anTab .anList .listP{
+  font-size: 14px;
+  color: #888;
+  line-height: 24px;
+}
+@media (max-width: 768px) {
+  .quesBox{
+    margin:60px auto;
+    width: 648px;
+  }
+  .quesBox h2{
+    font-size: 18px;
+  }
+  .whatIs{
+    margin-top: 60px;
+  }
+  .whatIs .list_Box{
+    display: none;
+  }
+  .answerBox{
+    float: inherit;
+    width: 100%;
+  }
+  .answerBox .anTab .anList h4{
+    line-height: 22px;
+  }
+}
+
+@media (max-width: 415px) {
+  .quesBox{
+    margin:30px auto;
+    width: 100%;
+  }
+  .quesBox h3{
+    font-size: 14px;
+  }
+  .whatIs{
+    margin-top: 30px;
+  }
+  .answerBox{
+    padding: 0 5%;
+  }
+  .answerBox .anTab .anList{
+    border-top: none;
+  }
+  .answerBox .anTab .anList{
+    padding: 15px 0;
+  }
+  .answerBox .anTab .anList:last-child{
+    border-bottom: none;
+  }
+  .answerBox .anTab .anList h4{
+    margin-bottom: 8px;
+  }
+  .visa-line {
+    width: 30px;
+  }
+
+
+}

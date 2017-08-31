@@ -1,2 +1,2 @@
 
-module.exports = 'devb.careerchina.com';
+module.exports = 'https://business.careerchina.com';

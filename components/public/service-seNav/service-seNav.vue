@@ -99,7 +99,7 @@
   .seNavTab .seNavList .bor-bot,.seNavList1 .bor-bot{
     position: absolute;
     left: 50%;
-    bottom: 1px;
+    bottom: 0;
     margin-left: -12px;
     width: 24px;
     height: 3px;
@@ -162,12 +162,12 @@
   @media (max-width: 415px) {
     .seNavTab{
       width: 375px;
-      padding-left: 20px;
+      padding-left: 10px;
       overflow: hidden;
       margin: inherit;
     }
     .seNavTab .seNavList,.seNavList1{
-      margin-right: 12px;
+      margin-right: 15px;
     }
   }
 </style>

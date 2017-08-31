@@ -1,18 +1,26 @@
 <template>
-  <div class="fixSubmit" v-if="fixShow">
+  <div class="fixSubmit" v-if="fixshow">
     <div class="sing">
       <p class="singTitle">
         Sign Up for Our Free
         Newsletters
       </p>
-      <input type="text" class="eI" placeholder="Email" v-model="inputText" @focus="focus">
-      <p class="format" v-show="emailState">Please submit in right format.</p>
-      <p class="success" v-show="success">Thank you for signing up!</p>
-      <div class="mask" v-show="mask"></div>
-      <div class="btnBox">
-        <button class="btnText" @click="sign">Sign Up</button>
+      <div class="inputBox">
+        <input type="text" class="eI" placeholder="Email" v-model="inputText" @focus="focus">
+        <!--<p class="format" v-show="emailState">Please submit in right format.</p>-->
+        <div class="worBox" v-show="emailState">
+          <span class="sj"></span>
+          <span class="worWord">Please submit in right format.</span>
+        </div>
+        <div class="suBox" v-show="success">
+          <span class="sj"></span>
+          <span class="suWord">We get you! Thanks for joining us!</span>
+        </div>
+        <div class="mask" v-show="mask"></div>
+        <div class="btnBox">
+          <button class="btnText" @click="sign">Sign Up</button>
+        </div>
       </div>
-
     </div>
     <i class="close" @click="close"></i>
   </div>
@@ -27,7 +35,7 @@
         emailState:false,
         success:false,
         mask:false,
-        fixShow:false,
+        fixshow:true,
         falg:true
       }
     },
@@ -56,24 +64,44 @@
         }
       },
       close(){
-          this.fixShow=false;
+        //$('.fixSubmit').css('display','none');
+        this.fixshow=false
           this.falg=false
       }
     },
     mounted(){
-      var scrollT = 0;
       var _this = this;
-      $(document).scroll(function () {
-        scrollT = document.body.scrollTop || document.documentElement.scrollTop;
-        if(_this.falg===false){
-          _this.fixShow=false
-        }else {
-          if(scrollT>=460){
-            _this.fixShow=true
-          }else {
-            _this.fixShow=false
-          }
+
+      $(function() {
+        function scroll(fn) {
+          var beforeScrollTop = document.body.scrollTop,
+            fn = fn || function() {};
+          //console.log(beforeScrollTop)
+          window.addEventListener("scroll", function() {
+            var afterScrollTop = document.body.scrollTop,
+              delta = afterScrollTop - beforeScrollTop;
+            //console.log(delta)
+            if(delta === 0) return false;
+            fn(delta > 0 ? "down" : "up");
+            beforeScrollTop = afterScrollTop;
+            if(_this.falg===false){
+              this.fixshow=false
+              //$('.fixSubmit').css('display','none');
+              return false
+            }
+          }, false);
         }
+        scroll(function(direction) {
+          var beforeScrollTop = document.body.scrollTop;
+            //console.log(beforeScrollTop)
+          if(direction=="down" && beforeScrollTop>=500){
+             $('.fixSubmit').fadeIn(500)
+            //_this.fixShow=true
+          }else{
+            $('.fixSubmit').fadeOut(500)
+            //_this.fixShow=false
+          }
+        });
       });
     }
 
@@ -88,24 +116,25 @@
     width: 100%;
     background:linear-gradient(45deg,#19DFE8 0%,#4B4DFF 100%);
     z-index: 200;
+    display: none;
   }
   .sing {
-    position: relative;
-    width: 772px;
+    width: 800px;
     margin: auto;
     font-size: 0;
     padding: 28px 0;
   }
-
   .sing .singTitle {
     display: inline-block;
-    font-family: AvenirNext-Regular;
     font-size: 24px;
     color: #FFFFFF;
     letter-spacing: 0;
     line-height: 36px;
   }
-
+  .sing .inputBox{
+    display: inline-block;
+    position: relative;
+  }
   .sing .eI {
     display: inline-block;
     width: 220px;
@@ -126,6 +155,7 @@
 
   .sing .btnBox {
     display: inline-block;
+    vertical-align: bottom;
   }
   .sing .mask{
     position: absolute;
@@ -140,7 +170,6 @@
     height: 44px;
     line-height: 44px;
     font-size: 14px;
-    font-family: AvenirNext-DemiBold;
     color: #fff;
     text-align: center;
     cursor: pointer;
@@ -150,32 +179,74 @@
     border-radius: 2px;
   }
   .sing .btnBox .btnText:hover{
-    background: #11b85b;
+    background: #000935;
   }
-  .sing .format,.success{
+  .inputBox .worBox, .suBox {
     position: absolute;
-    right: 175px;
-    bottom: 10px;
-    font-size: 12px;
+    left: 65px;
+    top: -56px;
+    padding: 0 10px;
+    height: 40px;
+    border-radius: 5px;
   }
-  .sing .format{
-    color: #f7593f;
+
+  .inputBox .worBox {
+    font-size: 0;
+    z-index: 100;
+    background: #f7593f;
   }
-  .sing .success{
-    color: #0ed666;
+
+  .inputBox .worBox .sj {
+    position: absolute;
+    bottom: -16px;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-top-color: #f7593f;
+  }
+  .inputBox .worBox .worWord {
+    font-size: 14px;
+    color: #fff;
+    line-height: 40px;
+  }
+
+  .inputBox .suBox {
+    text-align: center;
+    background: #0ed666;
+  }
+
+  .inputBox .suBox .sj {
+    position: absolute;
+    bottom: -16px;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-top-color: #0ed666;
+  }
+
+  .inputBox .suBox .suWord {
+    font-size: 14px;
+    color: #fff;
+    line-height: 40px;
   }
   .fixSubmit .close{
     position: absolute;
     top:38px;
-    right:20px;
+    right:40px;
     width: 24px;
     height: 24px;
-    background: url("./icon-blog-close.png")no-repeat center;
+    background: url("./icon-blog-close.svg")no-repeat center;
     cursor: pointer;
+  }
+  .fixSubmit .close:hover{
+    opacity: .6;
+    filter:alpha(opacity=60);
   }
   @media (max-width: 1040px) {
     .sing {
-      width: 640px;
+      width: 656px;
     }
     .sing .singTitle {
       font-size: 20px;
@@ -184,8 +255,8 @@
       width: 200px;
       margin: 0 10px 0 24px;
     }
-    .sing .format,.success{
-      right: 146px;
+    .inputBox .worBox, .suBox{
+      left: 16px;
     }
   }
   @media (max-width: 900px) {
@@ -196,40 +267,75 @@
   }
   @media (max-width: 768px) {
     .fixSubmit{
-      height: 80px;
+      height: 100px;
+      bottom: inherit;
+      top:0;
     }
     .sing {
-      padding: 18px 0;
+      padding: 28px 0;
+      margin-left: inherit;
+      margin: auto;
     }
     .sing .format,.success{
       bottom: 3px;
     }
     .fixSubmit .close{
-      top:28px;
-    }
-
-  }
-  @media (max-width: 598px)and (min-width: 375px) {
-    .fixSubmit{
-      height: 70px;
-    }
-    .sing {
-      width: 290px;
-      margin-left: 20px;
-      padding: 13px 0;
-    }
-    .sing .singTitle{
       display: none;
     }
+    .inputBox .worBox, .suBox{
+      left:23px;
+      top:57px;
+    }
+    .inputBox .worBox .sj{
+      bottom:inherit;
+      top:-16px;
+      border-top-color: transparent;
+      border-bottom-color: #f7593f;
+    }
+    .inputBox .suBox .sj{
+      bottom:inherit;
+      top:-16px;
+      border-top-color: transparent;
+      border-bottom-color: #0ed666;
+    }
+  }
+  @media (max-width: 415px){
+    .fixSubmit{
+      height: 100px;
+      padding: 20px 5%;
+    }
+    .sing {
+      width: 100%;
+      padding: 0;
+    }
+    .sing .singTitle{
+      display: block;
+      margin-bottom: 14px;
+      font-size: 14px;
+      line-height:inherit;
+    }
+    .sing .inputBox{
+      width: 100%;
+    }
+    .sing .btnBox{
+      width: 20%;
+      height: 30px;
+      margin-left: 5%;
+    }
     .sing .btnBox .btnText{
-      width: 80px;
+      width: 100%;
+      height: 30px;
+      line-height: 30px;
     }
     .sing .eI {
-      margin: 0 10px 0 0;
+      width: 75%;
+      height: 30px;
+      margin: inherit;
+      line-height: 30px;
     }
-    .sing .format,.success{
-      bottom: 0;
-      right: 124px;
+    .inputBox .worBox, .suBox{
+      left: 0;
+      top:46px;
     }
   }
 </style>

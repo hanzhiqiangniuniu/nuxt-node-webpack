@@ -128,7 +128,7 @@
     width: 100%;
     height: 60px;
     background: #fff;
-    z-index: 90;
+    z-index: 130;
     box-shadow: 0 2px 4px 0 rgba(112,112,112,0.08);
   }
   .seNav .seNavTab{
@@ -143,7 +143,7 @@
   .seNav .seNavTab .seNavList .bor-bot{
     position: absolute;
     left: 50%;
-    bottom: 1px;
+    bottom: 0;
     margin-left: -12px;
     opacity: 0.5;
     background: #4B4DFF;
@@ -205,6 +205,7 @@
     background: #fff;
     z-index: 120;
     transition: all 1s;
+    box-shadow: 0 4px 6px 0 rgba(0,0,0,.1);
   }
   .hide-seNav .hideTab{
     padding: 0 5% 30px 5%;

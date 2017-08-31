@@ -2,7 +2,7 @@
   "requisitionList": [
     {
       "addDateAlt": "",
-      "addTime": 1497342424129,
+      "addTime": 1498820101483,
       "ageGroupAlt": null,
       "age_group": "Kindergarten & Pre-School\nPrimary/Elementary",
       "applyLink": "https://app.jobvite.com/CompanyJobs/Careers.aspx?k=Apply&j=o6Dj5fwR&c=qQxaVfwc",
@@ -54,15 +54,15 @@
           "userName": "paul.chen@careerchina.com"
         }
       ],
-      "hot": "2",
-      "id": "593fa1d863cd0aec1df55bdd",
+      "hot": "999",
+      "id": "59562e0544f4ab9545c51ce3",
       "inst": null,
       "institute": "First Leap",
-      "instituteId": "3",
-      "instituteName": "",
+      "instituteId": "20",
+      "instituteName": "Beijing SMIC Private School",
       "jobState": "Open",
       "jobType": "Full-Time",
-      "lastUpdatedDate": 1495264516463,
+      "lastUpdatedDate": 1499153645977,
       "list": null,
       "locationCity": "Nationwide",
       "locationCountry": "China",
@@ -74,11 +74,12 @@
       "status": 1002,
       "subject": "English as a Second Language (ESL)",
       "title": "Live, Travel & Teach English in China to First Leap Franchise Learners",
-      "updateTime": 1498121219168
+      "updateTime": 1499223603615,
+      "updateTimeStr": "2017/07/05"
     },
     {
       "addDateAlt": "",
-      "addTime": 1497342424119,
+      "addTime": 1498820101449,
       "ageGroupAlt": null,
       "age_group": "Kindergarten & Pre-School\nPrimary/Elementary",
       "applyLink": "https://app.jobvite.com/CompanyJobs/Careers.aspx?k=Apply&j=oRz64fwk&c=qQxaVfwc",
@@ -116,18 +117,18 @@
       "expirationDate": 0,
       "hiringManagers": [
         {
-          "email": "eleanor.boniface@careerchina.com",
-          "firstName": "Eleanor",
-          "lastName": "Boniface",
-          "userId": "s3eX5hw5",
-          "userName": "eleanor.boniface@careerchina.com"
-        },
-        {
           "email": "mag.sun@careerchina.com",
           "firstName": "Mag",
           "lastName": "Sun",
           "userId": "s2eX5hw4",
           "userName": "mag.sun@careerchina.com"
+        },
+        {
+          "email": "eleanor.boniface@careerchina.com",
+          "firstName": "Eleanor",
+          "lastName": "Boniface",
+          "userId": "s3eX5hw5",
+          "userName": "eleanor.boniface@careerchina.com"
         },
         {
           "email": "paul.chen@careerchina.com",
@@ -138,11 +139,11 @@
         }
       ],
       "hot": "999",
-      "id": "593fa1d863cd0aec1df55bdc",
+      "id": "59562e0544f4ab9545c51ce2",
       "inst": null,
       "institute": "A+W Academy",
-      "instituteId": "1",
-      "instituteName": "",
+      "instituteId": "2",
+      "instituteName": "Meten Education Group",
       "jobState": "Open",
       "jobType": "Full-Time",
       "lastUpdatedDate": 1495264255603,
@@ -157,8 +158,9 @@
       "status": 1002,
       "subject": "Physical Education",
       "title": "PE Teacher in A+W Academy",
-      "updateTime": 1498100933964
+      "updateTime": 1499223601723,
+      "updateTimeStr": "2017/07/05"
     }
   ],
-  "tatol": 2
+  "total": 2
 }

@@ -1,16 +1,17 @@
 <template>
   <div class="placement">
-    <v-nav></v-nav>
+    <v-nav @refreshList="ipadShow"></v-nav>
     <v-seNav></v-seNav>
+    <v-ipadNav v-show="this.ipad" @close="ipadHide"></v-ipadNav>
     <div class="bannerBox" id="bannerBox">
       <div class="auto" style="padding-right: 19px">
         <div class="banLeft">
-          <h2 class="banTitle">
+          <h1 class="banTitle">
             Career Advice
-          </h2>
-          <h2 class="ipad-ban-title">
+          </h1>
+          <h1 class="ipad-ban-title">
             Career Advice
-          </h2>
+          </h1>
           <p class="serDes">
             Our team will work with you <br/>
 to identify job opportunities and companies in China
@@ -18,9 +19,9 @@ that best fit your skills and interests.
           </p>
         </div>
         <div class="banRight">
-          <img src="../assets/img/service/job-placement-China-1.png" alt="">
+          <img src="../assets/img/service/job-placement-China-1.png" alt="job placement China">
           <span class="tag">
-            —— The silhouette is TianTan of Chinese Ancient buildings ——
+            —— Silhouette - Folding Fan. Used also as weapons and as decoration. ——
           </span>
         </div>
       </div>
@@ -28,9 +29,9 @@ that best fit your skills and interests.
     <div class="board">
       <ul class="board-tab auto" id="imgLazy">
         <li class="board-list clear">
-          <img class="left-img img1" src="../assets/img/service/job-placement-China-2.png" alt="">
+          <img class="left-img img1" src="../assets/img/service/job-placement-China-2.png" alt="Submit Resume in China">
           <div class="board-img-ass-right board-img-ass board-img-ass-margin1">
-            <h3 class="board-list-title">Create an Account & Submit Your Resume</h3>
+            <h2 class="board-list-title">Create an Account & Submit Your Resume</h2>
             <p class="board-list-des">
               Our career consultants are available to advise you on job opportunities in China that are a right fit for you, based on your skills and qualifications, desired salary, and lifestyle interests.
             </p>
@@ -38,17 +39,17 @@ that best fit your skills and interests.
         </li>
         <li class="board-list clear web">
           <div class="board-img-ass-left board-img-ass board-img-ass-margin2">
-            <h3 class="board-list-title">Talk With a Career Consultant</h3>
+            <h2 class="board-list-title">Talk With a Career Consultant</h2>
             <p class="board-list-des">
               Once we have your information in the system, you can work with our Career Consultants to discuss your qualifications and your career goals. The team will also want to know more about you, including your work-style, lifestyle interests, and desired salary.
             </p>
           </div>
-          <img  class="right-img img2" src="../assets/img/service/job-placement-China-3.png" alt="">
+          <img  class="right-img img2" src="../assets/img/service/job-placement-China-3.svg" alt="Career Consultant in China">
         </li>
         <li class="board-list clear">
-          <img class="left-img img3" src="../assets/img/service/job-placement-China-4.png" alt="">
+          <img class="left-img img3" src="../assets/img/service/job-placement-China-4.png" alt="Job Matching in China">
           <div class="board-img-ass-right board-img-ass board-img-ass-margin3">
-            <h3 class="board-list-title">Matching Job Opportunities</h3>
+            <h2 class="board-list-title">Matching Job Opportunities</h2>
             <p class="board-list-des">
               After we have gotten to know you, we will identify particular companies and job opportunities that are a great fit. From there, we will work with you closely to continue through the interviewing process.
             </p>
@@ -56,18 +57,18 @@ that best fit your skills and interests.
         </li>
         <li class="board-list clear web">
           <div class="board-img-ass-left board-img-ass board-img-ass-margin4">
-            <h3 class="board-list-title">Interviews</h3>
+            <h2 class="board-list-title">Interviews</h2>
             <p class="board-list-des">
               Our team will work with you closely to guide you along the interview process, and advise you on any other requirements, such as a teaching demo. We will also coordinate with the hiring companies and advise
  you on the next steps in the process.
              </p>
           </div>
-          <img  class="right-img img4" src="../assets/img/service/job-placement-China-5.png" alt="">
+          <img  class="right-img img4" src="../assets/img/service/job-placement-China-5.png" alt="Interviews in China">
         </li>
         <li class="board-list clear">
-          <img class="left-img img5" src="../assets/img/service/job-placement-China-6.png" alt="">
+          <img class="left-img img5" src="../assets/img/service/job-placement-China-6.png" alt="Get Hired in China">
           <div class="board-img-ass-right board-img-ass board-img-ass-margin5">
-            <h3 class="board-list-title">Get Hired!</h3>
+            <h2 class="board-list-title">Get Hired!</h2>
             <p class="board-list-des">
               Congratulations on the new job! The Career China team will assist you with getting together appropriate documents to sign. We will also be sure you understand the details, such as benefits and insurance. Lastly, our team will work with the hiring company to provide you with on-boarding information and other important documents related to your orientation.
             </p>
@@ -75,13 +76,13 @@ that best fit your skills and interests.
         </li>
         <li class="board-list clear web">
           <div class="board-img-ass-left board-img-ass board-img-ass-margin6">
-            <h3 class="board-list-title">Work Visa</h3>
+            <h2 class="board-list-title">Work Visa</h2>
             <p class="board-list-des">
               Once you have signed an offer, the Career China visa team will begin to work with you more closely to help gather & process all the required documents to get your working visa in China. This process can take some time, so your career consultant may inform you of the
 requirements ahead of time so that you can get start preparing all the documents in advance.
             </p>
           </div>
-          <img  class="right-img img6" src="../assets/img/service/job-placement-China-7.png" alt="">
+          <img  class="right-img img6" src="../assets/img/service/job-placement-China-7.png" alt="China Resident Permit">
         </li>
         <li class="advice-line1"></li>
         <li class="advice-line2"></li>
@@ -90,34 +91,34 @@ requirements ahead of time so that you can get start preparing all the documents
         <li class="advice-line5"></li>
         <li class="advice-line6"></li>
       </ul>
-      <a href="javascript:;" class="resumeLink">Submit My Resume Now!</a>
+      <a href="https://app.jobvite.com/j?aj=oxe54fwE&s=CC_Website" class="resumeLink" title="Submit Resume in China" target="_blank">Submit My Resume Now!</a>
     </div>
     <div class="guideLink">
       <div class="auto">
         <ul class="guideTab clear">
           <li class="guideList clear">
             <div class="guide-listLeft">
-              <h3 class="guideTitle">
+              <h2 class="guideTitle">
                 Work Visa
-              </h3>
+              </h2>
               <p class="guideDes">
                 We are happy to walk you through the process, as well as
 providing you with checklists and sample documents.
               </p>
             </div>
-            <a class="guideIcon" href="/work-visa-China"></a>
+            <a class="guideIcon" href="/work-visa-China" title="China Work Visa"></a>
           </li>
           <li class="guideList clear">
             <div class="guide-listLeft">
-              <h3 class="guideTitle">
+              <h2 class="guideTitle">
                 Ground Service
-              </h3>
+              </h2>
               <p class="guideDes">
                 Our team can assist with making arrangements that will help
 with your transition into China.
               </p>
             </div>
-            <a class="guideIcon" href="/moving-to-China"></a>
+            <a class="guideIcon" href="/moving-to-China" title="Moving to China"></a>
           </li>
         </ul>
       </div>
@@ -131,20 +132,51 @@ with your transition into China.
   import $ from 'jquery'
   import Vue from 'vue'
   import VueResource from 'vue-resource';
-  import '../assets/css/reset.min.css'
   import addthis from '../assets/js/addthis.js';
   import posiImgAnimate from '../assets/js/img-animate-position.js';
   import nav from '../components/public/nav/nav'
   import seNav from '../components/public/service-seNav/service-seNav'
   import footer from '../components/public/footer/footer'
   import goTop from '../components/public/goTop/goTop'
+  import ipadNav from '../components/public/ipad-nav/ipadNav'
   var addthis_share = {};
+  if (process.BROWSER_BUILD) {
+    Vue.use(VueResource);
+  }
   export default{
+    data(){
+      return{
+        ipad:false
+      }
+    },
+    head:{
+      title:'Career Advice and job placement China',
+      meta:[
+        { name: 'keywords', content: 'job placement China'},
+        { name: 'description', content: "Our team will work with you to identify jobs and companies that best fit your skills and interests, and assist with your job placement in China."},
+        { property: 'og:url', content: 'www.careerchina.com/job-placement-China'},
+        { property: 'og:type', content: 'article'},
+        { property: 'og:image', content: 'http://material.careerchina.com/img/a3957927-15eb-4462-b9b1-16a3834dffa9.jpg'},
+        { name: 'twitter:card', content: 'http://material.careerchina.com/img/a3957927-15eb-4462-b9b1-16a3834dffa9.jpg'},
+        { name: 'twitter:creator', content: 'careerchina'},
+        { name: 'twitter:image', content: 'http://material.careerchina.com/img/a3957927-15eb-4462-b9b1-16a3834dffa9.jpg'},
+        { itemprop: 'image', content: 'http://material.careerchina.com/img/a3957927-15eb-4462-b9b1-16a3834dffa9.jpg'},
+      ]
+    },
     components:{
       'v-nav':nav,
       'v-seNav':seNav,
       'v-footer':footer,
-      'v-goTop':goTop
+      'v-goTop':goTop,
+      'v-ipadNav':ipadNav
+    },
+    methods:{
+      ipadShow(){
+        this.ipad=true
+      },
+      ipadHide(){
+        this.ipad=false
+      }
     },
     mounted(){
       addthis();
@@ -175,6 +207,8 @@ with your transition into China.
     color: #FFFFFF;
     letter-spacing: 0;
     line-height: 62px;
+    -webkit-animation: fadeInUp .4s linear;
+    animation: fadeInUp .4s linear;
   }
   .auto .banLeft .ipad-ban-title{
     margin-bottom: 30px;
@@ -187,6 +221,35 @@ with your transition into China.
     color: #FFFFFF;
     letter-spacing: 0;
     line-height: 24px;
+    -webkit-animation: fadeInUp .5s linear;
+    animation: fadeInUp .5s linear;
+  }
+  @-webkit-keyframes fadeInUp {
+    from {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 100%, 0);
+      transform: translate3d(0, 100%, 0);
+    }
+
+    to {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 100%, 0);
+      transform: translate3d(0, 100%, 0);
+    }
+
+    to {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
   }
   .auto .banRight{
     float: right;
@@ -274,7 +337,7 @@ with your transition into China.
     color: #333435;
     letter-spacing: 0;
     line-height: 24px;
-    font-weight: 600;
+    font-weight: bold;
   }
   .board-img-ass .board-list-des{
     margin-top: 20px;
@@ -316,7 +379,7 @@ with your transition into China.
     text-align: center;
   }
   .board .resumeLink:hover{
-    background-image: linear-gradient(135deg,  #16C8D0 0%, #4889FF 54%, #4345E5 100%);
+    background-image: linear-gradient(135deg,  #17CFD7 0%, #4889FF 54%, #3133DF 100%);
   }
   .board .board-tab .advice-line1{
     position: absolute;
@@ -549,6 +612,9 @@ with your transition into China.
     .guideTab .guideList .guideIcon{
       margin-top: 60px;
     }
+    .guideTab .guideList .guide-listLeft .guideTitle{
+      font-size: 16px;
+    }
   }
   @media (max-width: 415px) {
     .auto .banLeft{
@@ -637,5 +703,6 @@ with your transition into China.
     .guideTab .guideList .guideIcon{
       margin-top: 14%;
     }
+
   }
 </style>

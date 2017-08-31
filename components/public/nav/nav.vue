@@ -6,11 +6,11 @@
          title="teaching jobs in china,english teaching jobs in china">
       </a>
       <i :class="line"></i>
-      <a href="http://www.100tal.com/" :class="talLogo" target="_blank"></a>
+      <a href="http://en.100tal.com/" :class="talLogo" target="_blank"></a>
     </div>
     <ul class="tal clear">
       <li :class="CLASS">
-        <a href="/" id="home" name="Working in China">HOME</a>
+        <a href="/" id="home" name="Working in China" ref="home">HOME</a>
       </li>
       <li :class="CLASS">
         <a href="/jobs-in-China" id="JOB" name="Jobs in China" ref="jobs">OPPORTUNITIES</a>
@@ -19,7 +19,7 @@
         <a href="/how-to-move-to-China" ref="ser" name="how to move to china">SERVICES</a>
       </li>
       <li :class="CLASS">
-        <a href="/how-to-move-to-China" ref="ser" name="how to move to china">TEFL</a>
+        <a href="/TEFL" ref="tefl" name="how to move to china">TEFL</a>
       </li>
       <li :class="CLASS">
         <a href="/life-in-China-blog" ref="bl" name="life in China">BLOG</a>
@@ -32,7 +32,9 @@
       <a href="http://business.careerchina.com" target="_blank">EMPLOYER ACCESS ( 企业服务 )</a>
       <!--<b>/</b>
       <a href="javascript:;" class="log">LOG IN</a>
-      <a href="javascript:;" class="sign meet">SIGN UP</a>-->
+      <div class="signBox">
+        <a href="javascript:;" class="sign meet">SIGN UP</a>
+      </div>-->
     </div>
     <div :class="slideshow" @click="open">
       <button :class="trigger">
@@ -45,6 +47,11 @@
 <script type="text/ecmascript-6">
   import $ from 'jquery';
   export default{
+      /*props:{
+        refreshList:{
+              type:Function
+          }
+      },*/
       data(){
           return{
             navBox:'navBox',
@@ -61,103 +68,101 @@
 
     },
     mounted () {
-        var _this=this;
-      var reg=/life-in-China-blog/,
-          reg1=/live-in-China/,
-          reg2=/travel-in-China/,
-          reg3=/work-in-China/,
-          reg4=/guides/,
-          reg5=/on-boarding/,
-          reg6=/how-to-move-to-China/,
-          reg7=/jobs-in-China/,
-          reg8=/job-detail/,
-          reg9=/companies/;
-      var url=window.location.href;
-      if(reg.test(url)===true || reg1.test(url)===true || reg2.test(url)===true || reg3.test(url)===true || reg4.test(url)===true || reg5.test(url)===true){
-        _this.CLASS='list1';
-        _this.navBox='navBox1';
-        _this.ccLogo='ccLogo1';
-        _this.talLogo='talLogo1';
-        _this.line='line1';
-        _this.navRight='navRight1';
-        _this.trigger='cd-nav-trigger1';
-        this.$refs.bl.className='active';
-      }else if(reg6.test(url)===true){
-        this.$refs.ser.className='active';
-      }else if(reg7.test(url)===true || reg8.test(url)===true || reg9.test(url)===true){
-        _this.CLASS='list1';
-        _this.navBox='navBox1';
-        _this.ccLogo='ccLogo1';
-        _this.talLogo='talLogo1';
-        _this.line='line1';
-        _this.navRight='navRight1';
-        _this.trigger='cd-nav-trigger1';
-        this.$refs.jobs.className='active';
+      var _this = this;
+      var reg = /life-in-China-blog/,
+        reg1 = /live-in-China/,
+        reg2 = /travel-in-China/,
+        reg3 = /work-in-China/,
+        reg4 = /guides/,
+        reg5 = /on-boarding/,
+        reg6 = /how-to-move-to-China/,
+        reg12 = /job-placement-China/,
+        reg13 = /work-visa-China/,
+        reg14 = /moving-to-China/,
+        reg7 = /jobs-in-China/,
+        reg8 = /job-detail/,
+        reg9 = /companies/,
+        reg10 = /policy/,
+        reg11 = /term/,
+        reg15 = /question/,
+        reg16 = /TEFL/;
+      var url = window.location.href;
+      if (reg.test(url) === true || reg1.test(url) === true || reg2.test(url) === true || reg3.test(url) === true || reg4.test(url) === true || reg5.test(url) === true) {
+        _this.CLASS = 'list1';
+        _this.navBox = 'navBox1';
+        _this.ccLogo = 'ccLogo1';
+        _this.talLogo = 'talLogo1';
+        _this.line = 'line1';
+        _this.navRight = 'navRight1';
+        _this.trigger = 'cd-nav-trigger1';
+        this.$refs.bl.className = 'active';
+      } else if (reg6.test(url) === true || reg12.test(url) === true|| reg13.test(url) === true|| reg14.test(url) === true || reg15.test(url) === true) {
+        this.$refs.ser.className = 'active';
+      } else if (reg7.test(url) === true || reg8.test(url) === true || reg9.test(url) === true) {
+        _this.CLASS = 'list1';
+        _this.navBox = 'navBox1';
+        _this.ccLogo = 'ccLogo1';
+        _this.talLogo = 'talLogo1';
+        _this.line = 'line1';
+        _this.navRight = 'navRight1';
+        _this.trigger = 'cd-nav-trigger1';
+        this.$refs.jobs.className = 'active';
+      } else if (reg10.test(url) === true || reg11.test(url) === true) {
+        _this.CLASS = 'list1';
+        _this.navBox = 'navBox1';
+        _this.ccLogo = 'ccLogo1';
+        _this.talLogo = 'talLogo1';
+        _this.line = 'line1';
+        _this.navRight = 'navRight1';
+        _this.trigger = 'cd-nav-trigger1';
+      }else if(reg16.test(url) === true){
+        this.$refs.tefl.className = 'active';
+      }else {
+        this.$refs.home.className='active';
       }
 
-      $(document).ready(function(){
+      $(document).ready(function () {
         var scroll_pos = 0;
-        $(document).scroll(function() {
+        $(document).scroll(function () {
           scroll_pos = $(this).scrollTop();
-          if(scroll_pos > 0) {
-            _this.CLASS='list1';
-            _this.navBox='navBox1';
-            _this.ccLogo='ccLogo1';
-            _this.talLogo='talLogo1';
-            _this.line='line1';
-            _this.navRight='navRight1';
-            _this.trigger='cd-nav-trigger1'
-          } else if(reg.test(url)===true || reg1.test(url)===true || reg2.test(url)===true || reg3.test(url)===true || reg4.test(url)===true || reg5.test(url)===true || reg7.test(url)===true || reg8.test(url)===true || reg9.test(url)===true){
-            _this.CLASS='list1';
-            _this.navBox='navBox1';
-            _this.ccLogo='ccLogo1';
-            _this.talLogo='talLogo1';
-            _this.line='line1';
-            _this.navRight='navRight1';
-            _this.trigger='cd-nav-trigger1'
-          }else {
-            _this.CLASS='list';
-            _this.navBox='navBox';
-            _this.ccLogo='ccLogo';
-            _this.talLogo='talLogo';
-            _this.line='line';
-            _this.navRight='navRight';
-            _this.trigger='cd-nav-trigger'
+          if (scroll_pos > 0) {
+            _this.CLASS = 'list1';
+            _this.navBox = 'navBox1';
+            _this.ccLogo = 'ccLogo1';
+            _this.talLogo = 'talLogo1';
+            _this.line = 'line1';
+            _this.navRight = 'navRight1';
+            _this.trigger = 'cd-nav-trigger1'
+          } else if (reg.test(url) === true || reg1.test(url) === true || reg2.test(url) === true || reg3.test(url) === true || reg4.test(url) === true || reg5.test(url) === true || reg7.test(url) === true || reg8.test(url) === true || reg9.test(url) === true || reg10.test(url) === true || reg11.test(url) === true || reg15.test(url) === true) {
+            _this.CLASS = 'list1';
+            _this.navBox = 'navBox1';
+            _this.ccLogo = 'ccLogo1';
+            _this.talLogo = 'talLogo1';
+            _this.line = 'line1';
+            _this.navRight = 'navRight1';
+            _this.trigger = 'cd-nav-trigger1'
+          } else {
+            _this.CLASS = 'list';
+            _this.navBox = 'navBox';
+            _this.ccLogo = 'ccLogo';
+            _this.talLogo = 'talLogo';
+            _this.line = 'line';
+            _this.navRight = 'navRight';
+            _this.trigger = 'cd-nav-trigger'
           }
         });
       });
-      /*var url = window.location.href;
-      var reg = /working-in-china/g;
-      var reg1 = /jobs-in-china.html/g;
-      var reg2 = /companies-in-china/g;
-      var reg3 = /company/g;
-      var reg4 = /how-to-move-to-china/g;
-      var reg5 = /job-placement-china/g;
-      var reg6 = /china-work-visa/g;
-      var reg7 = /moving-to-china/g;
-      var reg8 = /life-in-china-blog/g;
-      var reg9 = /live-in-china/g;
-      var reg10 = /travel-in-china/g;
-      var reg11 = /work-in-china/g;
-      var reg12 = /guides/g;
-      var reg13 = /on-boarding/g;
-      var reg14 = /about-career-china/g;
-      if (reg.test(url)) {
-        $('#home').addClass('active');
-      } else if (reg2.test(url) || reg3.test(url) || reg1.test(url)) {
-        $('#JOB').addClass('active');
-      } else if (reg4.test(url) || reg5.test(url) || reg6.test(url) || reg7.test(url)) {
-        $('#ser').addClass('active');
-      } else if (reg8.test(url) || reg9.test(url) || reg10.test(url) || reg11.test(url) || reg12.test(url) || reg13.test(url)) {
-        $('#bl').addClass('active');
-      } else if (reg14.test(url)) {
-        $('#us').addClass('active');
-      }*/
     },
     methods:{
       open(){
-          this.slideshow = this.slideshow==='slideshow'?'nav-open':'slideshow'
+
+          //this.slideshow = this.slideshow==='slideshow'?'nav-open':'slideshow'
+        this.$emit('refreshList');
+        $("body").css('overflow-y','hidden')
       }
+    },
+    computed: {
+
     }
   };
 </script>
@@ -169,7 +174,7 @@
     top:0;
     width: 100%;
     height: 80px;
-    z-index: 10;
+    z-index: 110;
     transition: all .5s;
   }
   .navBox{
@@ -177,7 +182,6 @@
   }
   .navBox1{
     background: #fff;
-    box-shadow: 0 2px 4px 0 rgba(112,112,112,0.08);
     border-bottom: 1px solid rgba(112,112,112,0.08);
     transition: all 0s;
   }
@@ -189,20 +193,20 @@
 
   .logoBox .ccLogo,.ccLogo1 {
     display: inline-block;
-    width: 116px;
-    height: 23px;
+    width: 114px;
+    height: 25px;
     background-size: cover;
     overflow: hidden;
   }
   .logoBox .ccLogo {
-    background: url("./web-logo-careerchina-white.png") no-repeat;
+    background: url("./web-logo-careerchina-white.svg") no-repeat;
   }
   .logoBox .ccLogo1 {
-    background: url("./web-logo-careerchina-color.png") no-repeat;
+    background: url("./web-logo-careerchina-color.svg") no-repeat;
   }
   .logoBox .line,.line1 {
     display: inline-block;
-    height: 22px;
+    height: 18px;
     width: 1px;
     margin: 0 20px;
   }
@@ -221,10 +225,11 @@
     background-size: cover;
   }
   .logoBox .talLogo {
-    background: url("./web-logo-tal-white.png") no-repeat;
+    background: url("./web-logo-tal-white.svg") no-repeat;
+    color: #fff;
   }
   .logoBox .talLogo1 {
-    background: url("./web-logo-tal-color.png") no-repeat;
+    background: url("./web-logo-tal-color.svg") no-repeat;
   }
   .tal {
     margin: auto;
@@ -250,16 +255,18 @@
     filter: alpha(opacity=80);
   }
   .tal .list1 a{
-    color: rgba(1,52,53,1);
+    color: rgba(51,52,53,1);
   }
   .tal .list .active {
     opacity: 1;
     filter: alpha(opacity=100);
-    border-bottom: 2px solid rgba(255,255,255,.6);
+    border-bottom: 3px solid rgba(255,255,255,.6);
+    height: 80px;
   }
   .tal .list1 .active{
     color: #4B4DFF;
-    border-bottom: 2px solid rgba(75,77,255,.5);
+    border-bottom: 3px solid rgba(75,77,255,.5);
+    height: 80px;
   }
   .tal .list a:hover {
     opacity: 1;
@@ -282,9 +289,14 @@
     color: #fff;
     opacity: .6;
     filter: alpha(opacity=60);
+    font-weight: 100;
   }
   .navRight1 b{
     color: rgba(51,52,53,.6);
+    font-weight: 100;
+  }
+  .signBox{
+    display: inline-block;
   }
   .navRight a,.navRight1 a{
     font-size: 14px;
@@ -310,7 +322,6 @@
   }
   .navRight .sign,.navRight1 .sign{
     position: relative;
-    border-radius: 2px;
     padding: 11px 9px;
     text-transform: capitalize;
   }
@@ -330,7 +341,6 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    border-radius: 2px;
   }
   .sign {
     -webkit-transition: color 0.25s;
@@ -367,12 +377,12 @@
     transition: width 0.25s ease-out 0.375s , height 0.125s ease-out .625s;
   }
   .navRight1 .meet:hover::before {
-    border-top:2px solid rgba(51,52,53,1);
-    border-right:2px solid rgba(51,52,53,1);
+    border-top:2px solid #4B4DFF;
+    border-right:2px solid #4B4DFF;
   }
   .navRight1 .meet:hover::after {
-    border-bottom:2px solid rgba(51,52,53,1);
-    border-left:2px solid rgba(51,52,53,1);
+    border-bottom:2px solid #4B4DFF;
+    border-left:2px solid #4B4DFF;
     -webkit-transition: width 0.25s ease-out 0.375s , height 0.125s ease-out .625s;
     transition: width 0.25s ease-out 0.375s , height 0.125s ease-out .625s;
   }
@@ -501,9 +511,9 @@
     -o-transform: rotate(-45deg);
     transform: rotate(-45deg);
   }
-  @media (max-width: 1208px) and (min-width: 769px){
+  @media (max-width: 1268px) and (min-width: 769px){
     .navBox,.navBox1{
-      min-width: 1040px;
+      min-width: 1052px;
     }
     .tal .list a,.list1 a{
       padding: 0 10px;

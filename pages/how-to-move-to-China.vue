@@ -1,18 +1,19 @@
 <template>
   <div class="move">
-    <v-nav></v-nav>
+    <v-nav @refreshList="ipadShow"></v-nav>
     <v-seNav></v-seNav>
+    <v-ipadNav v-show="this.ipad" @close="ipadHide"></v-ipadNav>
     <div class="bannerBox">
       <div class="auto">
         <div class="banLeft">
-          <h2 class="banTitle">
+          <h1 class="banTitle">
             We're Here <br/>
             for Your Success
-          </h2>
-          <h2 class="ipad-ban-title">
+          </h1>
+          <h1 class="ipad-ban-title">
             We're Here
             for Your Success
-          </h2>
+          </h1>
           <p class="serDes">
             Our team will help you every step of the way, <br/>
             providing support services <br/>
@@ -21,9 +22,9 @@
           </p>
         </div>
         <div class="banRight">
-          <img src="../assets/img/service/China-visa-service-4.png" alt="">
+          <img src="../assets/img/service/China-visa-service-4.png" alt="how to move to china">
           <span class="tag">
-            —— The silhouette is TianTan of Chinese Ancient buildings ——
+            ——  Silhouette - Temple of Heaven. Ancient buildings built in 1420.  ——
           </span>
         </div>
       </div>
@@ -31,34 +32,34 @@
     <div class="board">
       <ul class="board-tab auto"  id="imgLazy">
         <li class="board-list clear">
-          <img class="left-img" src="../assets/img/service/China-visa-service-1.png" alt="">
+          <img class="left-img" src="../assets/img/service/China-visa-service-1.png" alt="job placement China">
           <div class="board-img-ass-right board-img-ass board-img-ass-margin1">
-            <h3 class="board-list-title">Career Advice</h3>
+            <h2 class="board-list-title">Career Advice</h2>
             <p class="board-list-des">
               Our career consultants are available to advise you on job
 opportunities in China that are a right fit for you, based on your skills
 and qualifications, desired salary, and lifestyle interests.
             </p>
-            <a href="/job-placement-China" class="board-list-link draw1">
+            <a href="/job-placement-China" class="board-list-link draw1" title="job placement China">
               Learn More
               <span class="top-border"></span>
               <span class="right-border"></span>
               <span class="bottom-border"></span>
               <span class="left-border"></span>
             </a>
-            <a class="go-more-icon" href="/job-placement-China"></a>
+            <a class="go-more-icon" href="/job-placement-China" title="job placement China"></a>
           </div>
         </li>
         <li class="board-list clear web">
           <div class="board-img-ass-left board-img-ass board-img-ass-margin2">
-            <h3 class="board-list-title">Work Visa</h3>
+            <h2 class="board-list-title">Work Visa</h2>
             <p class="board-list-des">
               Obtaining a proper work visa in China can seem daunting, but that’s
 why we are here to help. The Career China visa team is happy to walk
 you through the process, as well as providing you with checklists and
 sample documents, to ease your visa worries.
             </p>
-            <a href="/China-work-visa" class="board-list-link draw1">
+            <a href="/work-visa-China" class="board-list-link draw1" title="china work visa">
               Learn More
               <span class="top-border"></span>
               <span class="right-border"></span>
@@ -66,32 +67,32 @@ sample documents, to ease your visa worries.
               <span class="left-border"></span>
             </a>
           </div>
-          <img  class="right-img" src="../assets/img/service/China-visa-service-2.png" alt="">
+          <img  class="right-img" src="../assets/img/service/China-visa-service-2.png" alt="china work visa">
         </li>
         <li class="board-list clear iphone">
-          <img  class="left-img" src="../assets/img/service/China-visa-service-2.png" alt="">
+          <img  class="left-img" src="../assets/img/service/China-visa-service-2.png" alt="china work visa">
           <div class="board-img-ass-right board-img-ass board-img-ass-margin2">
-            <h3 class="board-list-title">Work Visa</h3>
+            <h2 class="board-list-title">Work Visa</h2>
             <p class="board-list-des">
               Obtaining a proper work visa in China can seem daunting, but that’s
 why we are here to help. The Career China visa team is happy to walk
 you through the process, as well as providing you with checklists and
 sample documents, to ease your visa worries.
             </p>
-            <a href="/China-work-visa" class="board-list-link draw1">
+            <a href="/work-visa-China" class="board-list-link draw1" title="china work visa">
               Learn More
               <span class="top-border"></span>
               <span class="right-border"></span>
               <span class="bottom-border"></span>
               <span class="left-border"></span>
             </a>
-            <a class="go-more-icon" href="/China-work-visa"></a>
+            <a class="go-more-icon" href="/work-visa-China" title="china work visa"></a>
           </div>
         </li>
         <li class="board-list clear">
-          <img class="left-img" src="../assets/img/service/China-visa-service-3.png" alt="">
+          <img class="left-img" src="../assets/img/service/China-visa-service-3.png" alt="moving to china">
           <div class="board-img-ass-right board-img-ass board-img-ass-margin3">
-            <h3 class="board-list-title">Ground Service</h3>
+            <h2 class="board-list-title">Ground Service</h2>
             <p class="board-list-des">
               We understand moving to China is exciting, but also a little
 nerve-wracking! Our team can assist with making arrangements that
@@ -99,14 +100,14 @@ will help with your transition into China. Things like arranging for
 airport pick-up, and providing assistance with apartment rentals, bank
 accounts and setting up your phone.
             </p>
-            <a href="/moving-to-China" class="board-list-link draw1">
+            <a href="/moving-to-China" title="moving to china" class="board-list-link draw1">
               Learn More
               <span class="top-border"></span>
               <span class="right-border"></span>
               <span class="bottom-border"></span>
               <span class="left-border"></span>
             </a>
-            <a class="go-more-icon" href="/moving-to-China"></a>
+            <a class="go-more-icon" href="/moving-to-China" title="moving to china"></a>
           </div>
         </li>
       </ul>
@@ -121,15 +122,23 @@ accounts and setting up your phone.
   import $ from 'jquery'
   import Vue from 'vue'
   import VueResource from 'vue-resource';
-  import '../assets/css/reset.min.css'
   import addthis from '../assets/js/addthis.js';
   import imgAnimate from '../assets/js/img-animate.js';
   import nav from '../components/public/nav/nav'
   import seNav from '../components/public/service-seNav/service-seNav'
   import footer from '../components/public/footer/footer'
   import goTop from '../components/public/goTop/goTop'
+  import ipadNav from '../components/public/ipad-nav/ipadNav'
   var addthis_share = {};
+  if (process.BROWSER_BUILD) {
+    Vue.use(VueResource);
+  }
   export default{
+      data(){
+          return{
+            ipad:false
+          }
+      },
     head:{
       title:'Discover how to move to China with our support services.',
       meta:[
@@ -148,8 +157,17 @@ accounts and setting up your phone.
       'v-nav':nav,
       'v-seNav':seNav,
       'v-footer':footer,
-      'v-goTop':goTop
+      'v-goTop':goTop,
+      'v-ipadNav':ipadNav
     },
+      methods:{
+        ipadShow(){
+          this.ipad=true
+        },
+        ipadHide(){
+          this.ipad=false
+        }
+      },
       mounted(){
           addthis();
         imgAnimate()
@@ -169,7 +187,7 @@ accounts and setting up your phone.
   }
   .auto .banLeft{
     float: left;
-    width: 400px;
+    width: 418px;
     margin-top: 274px;
   }
   .auto .banLeft .banTitle{
@@ -178,6 +196,8 @@ accounts and setting up your phone.
     color: #FFFFFF;
     letter-spacing: 0;
     line-height: 62px;
+    -webkit-animation: fadeInUp .4s linear;
+    animation: fadeInUp .4s linear;
   }
   .auto .banLeft .ipad-ban-title{
     margin-bottom: 30px;
@@ -190,11 +210,35 @@ accounts and setting up your phone.
     color: #FFFFFF;
     letter-spacing: 0;
     line-height: 24px;
+    -webkit-animation: fadeInUp .5s linear;
+    animation: fadeInUp .5s linear;
   }
+  /*@keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 100%, 0);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @-webkit-keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 100%, 0);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }*/
   .auto .banRight{
     float: right;
     margin-top: 229px;
-    width: 552px;
+    width: 481px;
   }
   .auto .banRight img{
     display: block;
@@ -282,6 +326,7 @@ accounts and setting up your phone.
     border-image: -webkit-linear-gradient( 135deg, #19DFE8 0% , #4B4DFF 100%) 20 20;
     border-image: -moz-linear-gradient( 135deg, #19DFE8 0% , #4B4DFF 100%) 20 20;
     border-image: linear-gradient(  135deg, #19DFE8 0% , #4B4DFF 100%) 20 20;
+    font-weight: bold;
   }
   .draw1 .top-border{
     position: absolute;
@@ -499,7 +544,7 @@ accounts and setting up your phone.
     }
     .board-img-ass .board-list-des{
       margin: 12px 0;
-      line-height: 16px;
+      line-height: 22px;
     }
   }
 </style>

@@ -1,39 +1,40 @@
 <template>
   <div class="companies">
-    <v-nav></v-nav>
+    <v-nav @refreshList="ipadShow"></v-nav>
     <v-jobSeNav></v-jobSeNav>
+    <v-ipadNav v-show="this.ipad" @close="ipadHide"></v-ipadNav>
     <div class="auto">
       <div class="top-box">
         <h2>{{jobDetailData.title}}</h2>
-        <span class="companies-date">{{jobDetailData.updateTime}}</span>
+        <span class="companies-date">{{jobDetailData.updateTimeStr}}</span>
         <div class="line"></div>
         <ul class="head-tab">
           <li class="head-list">
-            <span class="category-name">Category:</span>
+            <span class="category-name">Category</span>
             <p class="companies-des">
               {{jobDetailData.category}}
             </p>
           </li>
           <li class="head-list">
-            <span class="category-name">Subject:</span>
+            <span class="category-name">Subject</span>
             <p class="companies-des">
               {{jobDetailData.subject}}
             </p>
           </li>
           <li class="head-list">
-            <span class="category-name">Grade:</span>
+            <span class="category-name">Grade</span>
             <p class="companies-des">
               {{jobDetailData.age_group}}
             </p>
           </li>
         </ul>
-        <a :href="jobDetailData.applyLink" class="apply">Apply For This Job</a>
+        <a href="javascript:;" class="apply" @click="applyLink">Apply For This Job</a>
       </div>
       <div class="companies-content clear">
         <div class="content-left" ref="contentLeft">
 
         </div>
-        <div class="content-right clear">
+        <div class="content-right clear" @click="linkSchool(school.instituteName)">
           <div class="school-left">
             <h6>See Company Profile</h6>
             <div class="line"></div>
@@ -43,9 +44,12 @@
           </div>
           <div class="school-right">
             <h4>{{school.instituteName}}</h4>
-            <p class="school-des" ref="schoolDes">
+            <div class="school-des-box">
+              <p class="school-des" ref="schoolDes">
 
-            </p>
+              </p>
+              <i class="Ellipsis"></i>
+            </div>
           </div>
         </div>
       </div>
@@ -68,11 +72,11 @@
   import VueResource from 'vue-resource';
   import interfaceStr from '../assets/js/interface.js'
   import addthis from '../assets/js/addthis.js';
-  import '../assets/css/reset.min.css'
   import nav from '../components/public/nav/nav'
   import jobSeNav from '../components/public/job-seNav/job-seNav'
   import footer from '../components/public/footer/footer'
   import goTop from '../components/public/goTop/goTop'
+  import ipadNav from '../components/public/ipad-nav/ipadNav'
   var addthis_share = {};
   if (process.BROWSER_BUILD) {
     Vue.use(VueResource);
@@ -81,14 +85,41 @@
     data(){
         return{
           jobDetailData:'',
-          school:''
+          school:'',
+          title:'',
+          subject:'',
+          ipad:false,
+          channel:'',
+          eId:''
         }
+    },
+    head:{
+      meta:[
+        { name:"keywords", content:"jobs in China"},
+      ]
+    },
+    methods:{
+      ipadShow(){
+        this.ipad=true
+      },
+      ipadHide(){
+        this.ipad=false
+      },
+      linkSchool(schoolName){
+          var reg=/\s+/g;
+          var newName = schoolName.replace(reg,'-')
+          window.open('/company/'+newName+'.html')
+      },
+      applyLink(){
+        window.open('https://app.jobvite.com/j?aj='+this.eId+'&s='+this.channel+'')
+      }
     },
     components:{
       'v-nav':nav,
       'v-jobSeNav':jobSeNav,
       'v-footer':footer,
-      'v-goTop':goTop
+      'v-goTop':goTop,
+      'v-ipadNav':ipadNav
     },
     mounted(){
       String.prototype.queryURLParameter=function () {
@@ -102,20 +133,31 @@
         return obj;
       };
       var jobId=window.location.href.queryURLParameter()["id"];
-      this.$http.get('http://'+interfaceStr+'/cc/to/c/requisition/detail.action?id='+jobId+'').then(function (response) {
+      this.channel=window.location.href.queryURLParameter()["channel"];
+      this.channel=this.channel===undefined?'':this.channel;
+      this.$http.get(interfaceStr+'/cc/to/c/requisition/detail.action?id='+jobId+'&channel='+this.channel+'').then(function (response) {
         this.jobDetailData=response.body.requisition;
         this.school=response.body.requisition.inst;
+        this.title=response.body.requisition.title;
+        this.subject=response.body.requisition.subject;
+        this.eId=response.body.requisition.eId;
         var description=response.body.requisition.description;
         this.$refs.contentLeft.innerHTML=description;
         var introduction=response.body.requisition.inst.introduction;
         this.$refs.schoolDes.innerHTML=introduction
+        $("title").html(this.title);
+        var url=window.location.href;
+        var html = '<meta name="description" content="'+this.subject+'">'
+          +'<meta property="og:url" content="'+url+'"/>'
+          +'<meta property="og:type" content="article"/>';
+       $("head").append(html)
       });
       addthis()
     }
   }
 </script>
 
-<style scoped>
+<style>
   .companies{
     width: 100%;
     background: #F9F9FB;
@@ -165,12 +207,17 @@
     letter-spacing: 0;
   }
   .top-box .head-tab .head-list .category-name{
-    width: 65px;
-    vertical-align: top;
+    background: #FAFAFC;
+    border: 1px solid #E9EDFB;
+    border-radius: 100px;
+    width: 76px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
   }
   .top-box .head-tab .head-list .companies-des{
-    margin-left: 15px;
-    width: 880px;
+    margin-left: 10px;
+    width: 855px;
   }
   .top-box .apply{
     display: block;
@@ -194,6 +241,24 @@
     width: 740px;
     background: #fff;
     padding: 50px 40px;
+  }
+  .companies-content .content-left p{
+    font-size: 14px;
+    color: #666;
+    line-height: 24px;
+  }
+  .companies-content .content-left li{
+    font-size: 14px;
+    color: #666;
+    line-height: 24px;
+  }
+  .companies-content .content-left li{
+    list-style: disc;
+    margin-left: 19px;
+  }
+  .companies-content .content-left strong{
+    font-size: 20px;
+    color: #333435;
   }
   .companies-content .content-right{
     padding: 30px 20px;
@@ -222,7 +287,11 @@
     letter-spacing: 0;
     line-height: 16px;
   }
+  .school-des-box{
+    position: relative;
+  }
   .content-right .school-des{
+    display: inline-block;
     height: 360px;
     font-size: 14px;
     color: #666666;
@@ -230,8 +299,19 @@
     line-height: 30px;
     overflow: hidden;
   }
+  .school-des-box .Ellipsis{
+    position: absolute;
+    bottom:10px;
+    right:0;
+    width: 40px;
+    height: 24px;
+    background: url("../assets/img/jobs/icon-ellipsis-normal.svg")no-repeat center;
+  }
   .companies-content .content-right:hover h4{
     text-decoration: underline;
+  }
+  .companies-content .content-right:hover .Ellipsis{
+    background: url("../assets/img/jobs/icon-ellipsis-press.svg")no-repeat center;
   }
   .companies-content .content-right:hover .school-des{
     color: #4B4DFF;
@@ -251,7 +331,7 @@
       line-height: 17px;
     }
     .top-box .head-tab .head-list .companies-des{
-      width: 568px;
+      width: 550px;
     }
     .companies-content{
       margin: 20px 0;
@@ -278,13 +358,14 @@
       height: 100px;
     }
     .content-right h4{
-      margin: 60px 0 14px 0;
+      margin: 60px 0 8px 0;
     }
     .content-right .school-des{
-      height: 210px;
+      height: 75px;
+      line-height: 24px;
     }
   }
-  @media (max-width: 401px) {
+  @media (max-width: 415px) {
     .companies{
       padding-top: 110px;
     }
@@ -302,10 +383,12 @@
       width: 100%;
     }
     .top-box .head-tab .head-list .category-name{
-      width: 19%;
+      width: 20%;
+      vertical-align: top;
+      margin-top: -4px;
     }
     .top-box .head-tab .head-list .companies-des{
-      width: 78%;
+      width: 76%;
       margin-left: 3%;
     }
     .companies-content{
@@ -333,7 +416,7 @@
       margin: 20px 0 14px 0;
     }
     .content-right .school-des{
-      height: 270px;
+      height: 124px;
     }
   }
 </style>

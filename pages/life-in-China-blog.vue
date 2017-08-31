@@ -1,7 +1,8 @@
 <template>
    <div class="life-blog">
-     <v-nav></v-nav>
+     <v-nav @refreshList="ipadShow"></v-nav>
      <v-seNav></v-seNav>
+     <v-ipadNav v-show="this.ipad" @close="ipadHide"></v-ipadNav>
      <div class="auto clear">
        <div class="heLeft">
          <div class="container" v-swiper:mySwiper="swiperOption">
@@ -66,7 +67,7 @@
        <div class="blogCategory" v-for="categroy in this.categories">
          <div class="categoryTitle">
            <span class="nameBg"></span>
-           <h3>{{categroy.categoryName}}</h3>
+           <h2>{{categroy.categoryName}}</h2>
            <a href="javascript:;" class="more"  @click="seeAll(categroy.id)">
              <span class="see">MORE</span>
              <i class="seeIcon"></i>
@@ -79,17 +80,23 @@
                <img :src="blog.faceImg" :alt="blog.faceImgAlt">
                <div class="conMask"></div>
              </div>
-
              <div class="imgIntroduce">
-               <h2>
+               <h3>
                  {{blog.title}}
-               </h2>
+               </h3>
                <span class="name">{{blog.authorName}} /&nbsp</span>
                <span class="date"> {{blog.updateTimeStr}}</span>
+               <span class="nameDate">
+                 {{blog.authorName}} /&nbsp{{blog.updateTimeStr}}
+               </span>
                <div class="linear"></div>
                <p class="inWord">
                  {{blog.description}}
                </p>
+             </div>
+             <div class="imgBox1">
+               <img :src="blog.faceImg" :alt="blog.faceImgAlt">
+               <div class="conMask1"></div>
              </div>
            </li>
          </ul>
@@ -105,7 +112,6 @@
   import $ from 'jquery'
   import Vue from 'vue'
   import VueResource from 'vue-resource';
-  import '../assets/css/reset.min.css'
   import interfaceStr from '../assets/js/interface.js';
   import addthis from '../assets/js/addthis.js';
   import nav from '../components/public/nav/nav'
@@ -114,6 +120,7 @@
   import goTop from '../components/public/goTop/goTop'
   import sumit from '../components/public/sendEmail/sendEmail'
   import fixSubmit from '../components/public/fixSubmit/fixSubmit'
+  import ipadNav from '../components/public/ipad-nav/ipadNav'
   var addthis_share = {};
   if (process.BROWSER_BUILD) {
     const VueAwesomeSwiper = require('vue-awesome-swiper/ssr');
@@ -129,21 +136,15 @@
         blogData4: '',
         categories:'',
         url:'',
+        ipad:false,
         swiperOption: {
           autoplay: 5000,
-          initialSlide: 1,
-          loop: true,
           pagination: '.swiper-pagination',
           paginationClickable: true,
           paginationBulletRender: function (swiper, index, className) {
             return '<span class="' + className +' pageList"></span>';
           }
         },
-        /*swiperOption1: {
-          autoplay: 5000,
-          slidesPerView : 3,
-          spaceBetween : 20,
-        },*/
       }
     },
     head:{
@@ -166,11 +167,12 @@
       'v-goTop':goTop,
       'v-sendEmail':sumit,
       'v-seNav':seNav,
-      'v-fixSubmit':fixSubmit
+      'v-fixSubmit':fixSubmit,
+      'v-ipadNav':ipadNav
     },
     methods:{
       onlyBlog(urlWords){
-        window.open('/'+urlWords+'.html');
+        window.open('blog/'+urlWords+'.html');
       },
       seeAll(id){
         if(id===3){
@@ -188,16 +190,21 @@
         if(id===7){
           location.href='/on-boarding'
         }
+      },
+      ipadShow(){
+        this.ipad=true
+      },
+      ipadHide(){
+        this.ipad=false
       }
     },
     mounted(){
-      this.$http.get('http://'+interfaceStr+'/cc/blog/hotPost/get.action').then(function(response){
+      this.$http.get(interfaceStr+'/cc/blog/hotPost/get.action').then(function(response){
         this.blogData1=response.body.homeCategory[0].blogs[0];
         this.blogData2=response.body.homeCategory[0].blogs[1];
         this.blogData3=response.body.homeCategory[0].blogs[2];
         this.blogData4=response.body.homeCategory[0].blogs[3];
         this.categories=response.body.categories;
-        console.log(this.categories)
         var _this=this;
         $('.slide1').click(function () {
           _this.onlyBlog(_this.blogData1.urlWords)
@@ -212,13 +219,19 @@
           _this.onlyBlog(_this.blogData4.urlWords)
         })
       });
-      addthis()
+      addthis();
+      $($('.swiper-pagination span').get(0)).css({
+        width: "20px",
+        opacity: "1"
+      })
     },
   }
 </script>
 
 <style>
-
+  .life-blog{
+    background: #F9F9FB;
+  }
   .auto{
     width: 1040px;
     margin: auto;
@@ -251,7 +264,7 @@
 
   .heLeft .container .swiper-wrapper .swiper-slide .swiMask,.textBox{
     position: absolute;
-    bottom: 0;
+    bottom: 4px;
     left: 0;
     width: 100%;
     height: 100px;
@@ -339,7 +352,7 @@
     height: 16px;
     background: #4B4DFF;
   }
-  .blogCon .blogCategory .categoryTitle h3{
+  .blogCon .blogCategory .categoryTitle h2{
     display: inline-block;
     font-size: 20px;
     color: #333435;
@@ -363,6 +376,13 @@
     background-size: cover;
     vertical-align: super;
   }
+  .blogCon .blogCategory .categoryTitle .more:hover .see{
+    color: #333435;
+  }
+  .blogCon .blogCategory .categoryTitle .more:hover .seeIcon{
+    background: url("../assets/img/blog/icon-blog-arrow-right-press@2x.png")no-repeat center;
+    background-size: cover;
+  }
   .blogCon .blogCategory .blogLine{
     margin: 20px 0 30px 0;
     width: 100%;
@@ -381,29 +401,41 @@
   }
   .blogCategory .categoryTab .categoryList{
     margin-right: 25px;
+    cursor: pointer;
+    transition: all .5s;
   }
   .blogCategory .categoryTab li:last-child{
     margin-right: 0;
   }
-  .blogCategory .categoryTab .categoryList .imgBox{
+  .blogCategory .categoryTab .categoryList .imgBox,.imgBox1{
     position: relative;
     width: 100%;
     height: 160px;
     overflow: hidden;
     cursor: pointer;
   }
+  .blogCategory .categoryTab .categoryList .imgBox1{
+    display: none;
+  }
   .blogCategory .categoryTab .categoryList img{
     display: block;
     width: 100%;
     transition: transform 1s;
   }
-  .blogCategory .categoryTab .categoryList .imgBox:hover img{
+  .blogCategory .categoryTab .categoryList:hover{
+    box-shadow: 0 4px 20px 0 rgba(0,0,0,0.1);
+  }
+  .blogCategory .categoryTab .categoryList:hover .imgBox img{
+    transform: scale(1.2);
+  }
+  .blogCategory .categoryTab .categoryList:hover .imgBox1 img{
     transform: scale(1.2);
   }
   .blogCategory .categoryTab .categoryList .imgIntroduce{
     padding: 18px 34px 18px 23px;
+    background: #fff;
   }
-  .blogCategory .categoryTab .categoryList .imgIntroduce h2{
+  .blogCategory .categoryTab .categoryList .imgIntroduce h3{
     cursor: pointer;
     overflow: hidden;
     font-size: 16px;
@@ -431,6 +463,12 @@
     font-size: 12px;
     color: #989898;
   }
+  .blogCategory .categoryTab .categoryList .imgIntroduce .nameDate{
+    margin-top: 6px;
+    font-size: 12px;
+    color: #989898;
+    display: none;
+  }
   .blogCategory .categoryTab .categoryList .imgIntroduce .date{
     display: inline-block;
     font-size: 12px;
@@ -455,13 +493,14 @@
     }
     .heLeft .container .swiper-wrapper .swiper-slide .swiMask,.textBox{
       height: 95.6px;
+      bottom: 22px;
     }
     .heLeft .container .swiper-wrapper .swiper-slide .textBox{
       padding: 20px 0 0 20px;
     }
     .heRight{
       float: inherit;
-      margin: 20px auto;
+      margin: 10px auto;
       width: 688px;
       height: 100px;
     }
@@ -519,8 +558,13 @@
       width: 100%;
       margin-right: inherit;
       padding: 14px;
+      display: flex;
     }
     .blogCategory .categoryTab .categoryList .imgBox{
+      display: none;
+    }
+    .blogCategory .categoryTab .categoryList .imgBox1{
+      display: block;
       float: right;
       width: 252px;
       height: 140px;
@@ -533,6 +577,9 @@
       float: left;
       width: 388px;
       padding: 0;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
     }
     .blogCategory .categoryTab .categoryList .imgIntroduce h2{
       font-size: 18px;
@@ -551,12 +598,16 @@
     }
   }
   @media (max-width: 415px) {
+    .life-blog{
+      background: transparent;
+    }
     .heLeft{
       width: 100%;
       height: inherit;
     }
     .heLeft .container .swiper-wrapper .swiper-slide .swiMask,.textBox{
       height: 52px;
+      bottom:4px;
     }
     .heLeft .container .swiper-wrapper .swiper-slide img{
       height:208px;
@@ -564,6 +615,7 @@
     .heRight{
       width: 100%;
       height: inherit;
+      margin-bottom: 0;
     }
     .heLeft .container .swiper-wrapper .swiper-slide .textBox{
       padding: 10px 0 0 10px;
@@ -577,6 +629,14 @@
     .blogCon{
       width: 100%;
     }
+    .blogCon .blogCategory{
+      margin-bottom: 0;
+      border-bottom: 10px solid #F9F9FB;
+      padding-top: 20px;
+    }
+    .blogCon .blogCategory:first-child{
+      border-top: 10px solid #F9F9FB;
+    }
     .blogCon .blogCategory .categoryTitle{
       padding: 0 7px 0 10px;
       margin-bottom: 5px;
@@ -584,8 +644,13 @@
     .blogCategory .categoryTab .categoryList{
       margin-bottom: inherit;
       padding: 10px 7px 10px 10px;
+      box-shadow: none;
+      border-bottom: 2px solid #F9F9FB;
     }
-    .blogCategory .categoryTab .categoryList .imgBox{
+    .blogCategory .categoryTab .categoryList:hover {
+      box-shadow: none;
+    }
+    .blogCategory .categoryTab .categoryList .imgBox1{
       width: 36%;
       height: 72px;
     }
@@ -599,14 +664,20 @@
     .blogCategory .categoryTab .categoryList .imgIntroduce{
       width: 60%;
     }
-    .blogCategory .categoryTab .categoryList .imgIntroduce h2{
+    .blogCategory .categoryTab .categoryList .imgIntroduce h3{
+      height: inherit;
       font-size: 14px;
       line-height: 16px;
     }
     .blogCategory .categoryTab .categoryList .imgIntroduce .name{
-      margin: 6px 0 0 0;
+      display: none;
     }
-
+    .blogCategory .categoryTab .categoryList .imgIntroduce .date{
+      display: none;
+    }
+    .blogCategory .categoryTab .categoryList .imgIntroduce .nameDate{
+      display: block;
+    }
     .blogCategory .categoryTab .categoryList .imgIntroduce .inWord{
       display: none;
     }

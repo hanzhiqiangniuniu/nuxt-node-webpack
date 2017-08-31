@@ -1,7 +1,8 @@
 <template>
   <div class="lifeClass">
-    <v-nav></v-nav>
+    <v-nav @refreshList="ipadShow"></v-nav>
     <v-seNav></v-seNav>
+    <v-ipadNav v-show="this.ipad" @close="ipadHide"></v-ipadNav>
     <div class="auto">
       <el-carousel :interval="5000" type="card" :autoplay=false height=400px>
         <el-carousel-item v-for="carousel in this.carousels">
@@ -20,12 +21,14 @@
         <ul class="blog-tab">
           <li class="blog-list clear" v-for="detailData in this.detailDatas">
             <div class="listL">
-              <a class="title" href="javascript:;" target="_blank" @click="blogDetail(detailData.urlWords)">
-                {{detailData.title}}
-            </a>
+              <h3>
+                <a class="title" href="javascript:;" target="_blank" @click="blogDetail(detailData.urlWords)">
+                  {{detailData.title}}
+                </a>
+              </h3>
               <div class="author">
                 <span class="authorName">{{detailData.authorName}} /&nbsp</span>
-                <span class="timeStr">{{detailData.updateTimeStr}}</span>
+                <span class="timeStr">{{detailData.createTimeStr}}</span>
               </div>
               <div class="bgLine"></div>
               <P class="listField">
@@ -58,7 +61,6 @@
   import $ from 'jquery'
   import Vue from 'vue'
   import VueResource from 'vue-resource'
-  import '../assets/css/reset.min.css'
   import '../assets/css/blogList.css'
   import interfaceStr from '../assets/js/interface.js'
   import addthis from '../assets/js/addthis.js';
@@ -66,6 +68,7 @@
   import seNav from '../components/public/blog-seNav/blog-seNav'
   import footer from '../components/public/footer/footer'
   import goTop from '../components/public/goTop/goTop'
+  import ipadNav from '../components/public/ipad-nav/ipadNav'
   var addthis_share = {};
   if (process.BROWSER_BUILD) {
     const VueAwesomeSwiper = require('vue-awesome-swiper/ssr');
@@ -84,6 +87,7 @@
          loading:false,*/
         one: true,
         load: true,
+        ipad:false,
         footer: false
       }
     },
@@ -111,24 +115,32 @@
       'v-nav': nav,
       'v-footer': footer,
       'v-goTop': goTop,
-      'v-seNav': seNav
+      'v-seNav': seNav,
+      'v-ipadNav':ipadNav
     },
     methods: {
       blogDetail(urlWords){
-        window.open('/' + urlWords + '.html');
+        window.open('blog/' + urlWords + '.html');
       },
       only(urlWords){
-        window.open('/' + urlWords + '.html');
+        window.open('blog/' + urlWords + '.html');
+      },
+      ipadShow(){
+        this.ipad=true
+      },
+      ipadHide(){
+        this.ipad=false
       }
     },
     mounted(){
       var _this = this;
       let page = 1;
-      this.$http.get('http://' + interfaceStr + '/cc/blog/pageBlogs/getByCategoryId.action?rowCount=4&page=' + page + '&categoryId=4').then(function (response) {
+      this.$http.get(interfaceStr + '/cc/blog/pageBlogs/getByCategoryId.action?rowCount=10&page=' + page + '&categoryId=4').then(function (response) {
         this.carousels = response.body.hotdata;
+        console.log(this.carousels)
         this.detailDatas = response.body.data.data;
         this.carousels1 = response.body.hotdata[0];
-        if (this.detailDatas.length >= 4) {
+        if (this.detailDatas.length >= 10) {
           this.load = true;
         } else {
           this.load = false;
@@ -142,9 +154,9 @@
         var topCon = scrollTop + windowHeight;
         if (topCon >= loadOffset) {
           page++;
-          _this.$http.get('http://' + interfaceStr + '/cc/blog/pageBlogs/getByCategoryId.action?rowCount=4&page=' + page + '&categoryId=4').then(function (response) {
+          _this.$http.get(interfaceStr + '/cc/blog/pageBlogs/getByCategoryId.action?rowCount=10&page=' + page + '&categoryId=4').then(function (response) {
             let Listdatas = response.body.data.data;
-            if (Listdatas.length < 4) {
+            if (Listdatas.length < 10) {
               _this.load = false;
               for (var i = 0; i < Listdatas.length; i++) {
                 _this.detailDatas.push(Listdatas[i]);

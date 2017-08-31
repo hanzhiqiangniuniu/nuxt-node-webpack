@@ -5,42 +5,42 @@
         <ul class="siteTab clear">
           <li class="siteList">
             <h3 class="navName">PROGRAMS</h3>
-            <a href="jobs-in-china.html" title="Jobs in China">Featured Jobs</a>
-            <a href="company/First-Leap-China.html" title="First Leap China">First Leap China</a>
-            <a href="company/Meten-Education-Group.html" title="Meten">Meten</a>
-            <a href="company/Kids-R-Kids.html" title="Kids R Kids">Kids R Kids</a>
-            <a href="company/RDFZ-Xishan-School.html" title="RDFZ Xinshan School">RDFZ Xinshan School</a>
-            <a href="company/Beijing-SMIC-Private-School.html" title="Beijing SMIC School">Beijing SMIC School</a>
+            <a href="/jobs-in-China" title="Jobs in China">Featured Jobs</a>
+            <a href="javascript:;" :title="schoolData1.instituteName" @click="linkSchool(schoolData1.instituteName)">{{schoolData1.instituteName}}</a>
+            <a href="javascript:;" :title="schoolData2.instituteName" @click="linkSchool(schoolData2.instituteName)">{{schoolData2.instituteName}}</a>
+            <a href="javascript:;" :title="schoolData3.instituteName" @click="linkSchool(schoolData3.instituteName)">{{schoolData3.instituteName}}</a>
+            <a href="javascript:;" :title="schoolData4.instituteName" @click="linkSchool(schoolData4.instituteName)">{{schoolData4.instituteName}}</a>
+            <a href="javascript:;" :title="schoolData5.instituteName" @click="linkSchool(schoolData5.instituteName)">{{schoolData5.instituteName}}</a>
           </li>
           <li class="siteList">
             <h3 class="navName">SERVICES</h3>
-            <a href="job-placement-china.html" title="job placement China">Career Advice</a>
-            <a href="china-work-visa.html" title="china work visa">Work Visa</a>
-            <a href="moving-to-china.html" title="moving to china">Ground Service</a>
+            <a href="/job-placement-China" title="job placement China">Career Advice</a>
+            <a href="/work-visa-China" title="china work visa">Work Visa</a>
+            <a href="/moving-to-China" title="moving to china">Ground Service</a>
             <!--<a href="javascript:;">Why Choose Career China</a>-->
-            <a href="moving-to-china.html#quesTitle" @click="href2" title="moving to china">FAQS</a>
+            <a href="/moving-to-China#question" title="moving to china">FAQS</a>
           </li>
           <li class="siteList">
             <h3 class="navName">LATEST ARTICLES</h3>
-            <a href="live-in-china.html" title="live in China">Live</a>
-            <a href="travel-in-china.html" title="travel in China">Travel</a>
-            <a href="work-in-china.html" title="work in China">Work</a>
-            <a href="guides.html" title="city guides in China">Guides</a>
-            <a href="on-boarding.html" title="On-boarding">On-boarding</a>
-            <a href="life-in-china-blog.html" target="_blank" title="life in China">View More Posts</a>
+            <a href="/live-in-China" title="live in China">Live</a>
+            <a href="/travel-in-China" title="travel in China">Travel</a>
+            <a href="/work-in-China" title="work in China">Work</a>
+            <a href="/guides" title="city guides in China">Guides</a>
+            <a href="/on-boarding" title="On-boarding">On-boarding</a>
+            <a href="/life-in-China-blog" target="_blank" title="life in China">View More Posts</a>
           </li>
           <li class="siteList">
             <h3 class="navName">ABOUT</h3>
-            <a href="about-career-china.html" title="career china">About Us</a>
-            <a href="about-career-china.html#doing" title="career china team">Team</a>
+            <!--<a href="/about-career-China" title="career china">About Us</a>
+            <a href="/about-career-China#doing" title="career china team">Team</a>-->
             <a href="http://business.careerchina.com" target="_blank">For Chinese Companies</a>
           </li>
           <li class="siteList" style="margin-right:0">
             <h3 class="navName">CONTACT US</h3>
-            <a href="about-career-china.html" title="career china">TEL : +86 400-669-7618</a>
-            <a href="about-career-china.html#doing" title="career china team">ADDRESS : Linda Plaza B-5C, Dongtucheng Road,</a>
-            <a href="http://business.careerchina.com" target="_blank">For Chinese Companies</a>
-            <a href="http://business.careerchina.com" target="_blank">Chaoyang District, Beijing, China</a>
+            <a href="javascript:;" title="career china">TEL : +86 400-669-7618</a>
+            <a href="mailto:jobs@careerchina.com" title="career china team" class="email">EMAIL : jobs@careerchina.com</a>
+            <a href="javascript:;" target="_blank">ADDRESS : Linda Plaza B-5C, Dongtucheng Road, </a>
+            <a href="javascript:;" target="_blank">Chaoyang District, Beijing, China</a>
           </li>
         </ul>
         <ul class="icTab clear">
@@ -75,7 +75,7 @@
           </li>
           <li class="adList">
             <i class="email-icon"></i>
-            <a href="javascript:;">jobs@careerchina.com</a>
+            <a href="mailto:jobs@careerchina.com" title="career china team" class="email">jobs@careerchina.com</a>
           </li>
           <li class="adList">
             <i class="location-icon"></i>
@@ -85,23 +85,28 @@
           </li>
         </ul>
         <div class="linkTab">
-          <a href="javascript:;" title="FACEBOOK"><i class="face"></i><span class="text">FACEBOOK</span></a>
-          <a href="javascript:;" title="TWITTER"><i class="teitter"></i><span class="text">TWITTER</span></a>
-          <a href="javascript:;" title="LINKEDLN"><i class="link"></i><span class="text">LINKEDLN</span></a>
-          <a href="javascript:;" title="INSTAGRAM"><i class="inst"></i><span class="text">INSTAGRAM</span></a>
-          <a href="javascript:;" title="GOOGLE"><i class="goo"></i><span class="text">GOOGLE</span></a>
-          <a href="javascript:;" title="YOUTUBE"><i class="tub"></i><span class="text">YOUTUBE</span></a>
-          <a href="javascript:;" title="PINTEREST"><i class="pint"></i><span class="text">PINTEREST</span></a>
+          <a href="https://www.facebook.com/CareerChinaJobs/" title="FACEBOOK"><i class="face"></i><span class="text">FACEBOOK</span></a>
+          <a href="https://twitter.com/Career_China" title="TWITTER"><i class="teitter"></i><span class="text">TWITTER</span></a>
+          <a href="https://www.linkedin.com/company-beta/17913665/" title="LINKEDLN"><i class="link"></i><span class="text">LINKEDLN</span></a>
+          <a href="https://www.instagram.com/careerchina/" title="INSTAGRAM"><i class="inst"></i><span class="text">INSTAGRAM</span></a>
+          <a href="https://plus.google.com/u/0/116387979022769777244" title="GOOGLE"><i class="goo"></i><span class="text">GOOGLE</span></a>
+          <a href="https://www.youtube.com/channel/UCFA7l6MzmjNtVQAaZtReCeA" title="YOUTUBE"><i class="tub"></i><span class="text">YOUTUBE</span></a>
+          <a href="https://www.pinterest.com/careerchina/" title="PINTEREST"><i class="pint"></i><span class="text">PINTEREST</span></a>
         </div>
       </div>
       <div class="fooBot">
         <p class="copy">
-          Copyright © 2017 Career China. All rights reserved.  京ICP备16068124号-1
+          <span class="copyLeft">
+            Copyright © 2017 Career China. All rights reserved. 京ICP备16068124号-1
+          </span>
+          <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502033181" target="_blank">
+            <i class="gongan"></i>京公网安备11010502033181号
+           </a>
         </p>
         <div class="footerLink">
-          <a href="javascript:;">Term of Service</a>
+          <a href="/term" title="Term of Service">Term of Service</a>
           <i class="footerLine">|</i>
-          <a href="javascript:;">Privacy Policy</a>
+          <a href="/policy" title="Privacy Policy">Privacy Policy</a>
         </div>
       </div>
     </div>
@@ -109,25 +114,46 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import Vue from 'vue'
+  import VueResource from 'vue-resource';
+  import interfaceStr from '../../../assets/js/interface.js'
+  if (process.BROWSER_BUILD) {
+    Vue.use(VueResource);
+  }
   export default{
+    data(){
+        return{
+          schoolData1:'',
+          schoolData2:'',
+          schoolData3:'',
+          schoolData4:'',
+          schoolData5:''
+        }
+    },
     methods: {
-      href () {
-        try {
-          document.body.scrollTop = 0;
-        } catch (e) {
-        }
-      },
-      href2 () {
-        try {
-          var oList = document.getElementById('list_Box');
-          oList.style.marginTop = '0';
-          document.body.scrollTop = oList.offsetTop;
-        } catch (e) {
-        }
-      },
-      href3 () {
-        document.body.scrollTop = 600;
+      linkSchool(name){
+          var reg=/\s/g;
+          var newName=name.replace(reg,'-');
+          window.open('/company/'+newName+'.html')
       }
+    },
+    mounted(){
+        this.$http.get(interfaceStr+'/cc/to/c/responseInstitute.action').then(function (data) {
+          this.schoolData1 = data.body.institute[0];
+          this.schoolData2 = data.body.institute[1];
+          this.schoolData3 = data.body.institute[2];
+          this.schoolData4 = data.body.institute[3];
+          this.schoolData5 = data.body.institute[4];
+        })
+      /*this.$http({
+        method:'GET',
+        url:interfaceStr+'/cc/to/c/responseInstitute.action'
+      }).then(function(data){
+
+        console.log(data.body.institute)
+      }, function (error) {
+
+      });*/
     }
   };
 </script>
@@ -157,10 +183,15 @@
   }
 
   .footer .site .siteMain .siteTab .siteList {
-    margin-right: 78px;
+    margin-right: 76px;
     float: left;
   }
-
+  .footer .site .siteMain .siteTab .siteList:first-child{
+    width: 116px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
   .site .siteMain .siteTab .siteList .navName {
     display: block;
     margin-bottom: 20px;
@@ -181,10 +212,21 @@
   .site .siteMain .siteTab .siteList a:hover {
     text-decoration: underline;
   }
-
+  .site .siteMain .siteTab .siteList:last-child a{
+    cursor: default;
+  }
+  .site .siteMain .siteTab .siteList:last-child a:hover{
+    text-decoration: none;
+  }
+  .site .siteMain .siteTab .siteList .email{
+    cursor: pointer !important;
+  }
+  .site .siteMain .siteTab .siteList .email:hover{
+    text-decoration: underline  !important;
+  }
   .site .siteMain .icTab{
     position: absolute;
-    right: 0;
+    right: 14px;
     bottom: 44px;
   }
   .site .siteMain .icTab .icList{
@@ -256,7 +298,7 @@
     display: none;
   }
   .siteMain1 .address{
-    margin: 40px 0 30px 40px;
+    margin: 0 0 30px 40px;
   }
   .siteMain1 .address .adList{
     margin-bottom: 14px;
@@ -272,6 +314,13 @@
     font-size: 12px;
     color: #FFFFFF;
     vertical-align: middle;
+    cursor: default;
+  }
+  .siteMain1 .address .adList .email{
+    cursor: pointer;
+  }
+  .siteMain1 .address .adList .email:hover{
+    text-decoration: underline;
   }
   .siteMain1 .address .adList i{
     display: inline-block;
@@ -327,9 +376,24 @@
   }
   .fooBot .copy{
     float: left;
-    opacity: 0.6;
+    width: 637px;
     font-size: 12px;
-    color: #FFFFFF;
+    color: rgba(255,255,255,.6);
+  }
+  .copy .gongan{
+    display: inline-block;
+    margin: 0 3px 0 8px;
+    width: 20px;
+    height: 20px;
+    background: url("./gongan.jpg")no-repeat center;
+    vertical-align: bottom;
+  }
+  .fooBot .copy a{
+    font-size: 12px;
+    color: rgba(255,255,255,.6);
+  }
+  .fooBot .copy a:hover{
+    text-decoration: underline;
   }
   .fooBot .footerLink{
     float: right;
@@ -375,14 +439,17 @@
     }
   }
 
-  @media (max-width: 487px) {
+  @media (max-width: 415px) {
     .lastT{
       margin: -14px 0 0 0;
       padding-left:16px;
     }
     .fooBot .copy{
-      width: 281px;
+      width: 306px;
       margin: auto;
+    }
+    .fooBot .copy .copyLeft{
+      display: block;
     }
   }
 </style>

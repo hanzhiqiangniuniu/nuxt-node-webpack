@@ -1,10 +1,13 @@
 <template>
    <div class="index">
-     <v-nav></v-nav>
+     <v-nav @refreshList="ipadShow"></v-nav>
+     <v-ipadNav v-show="this.ipad" @close="ipadHide"></v-ipadNav>
      <div class="herBan">
        <div class="auto">
          <div class="herL">
-           <i class="playM" @click="play"></i>
+           <div class="playM" @click="play">
+             <i class="playM-icon"></i>
+           </div>
            <h1 class="webH1">
              Your Story in<br/>
              China<br/>
@@ -15,7 +18,9 @@
              China
              is Just Beginning
            </h1>
-           <i class="play" @click="play"></i>
+           <div class="play" @click="play">
+             <i class="play-icon"></i>
+           </div>
            <p class="herDes">
              Live an exciting lifestyle, <br/>
              travel to exotic lands, and earn a good living by working in China.
@@ -25,12 +30,12 @@
              and earn a good living by working in China.
            </p>
            <div class="link">
-             <a href="javascript" title="" class="draw meet">Explore Opportunities</a>
-             <a href="javascript" title="" class="draw meet">View Services</a>
+             <a href="/jobs-in-China" title="jobs in China" class="draw meet">Explore Opportunities</a>
+             <a href="/how-to-move-to-China" title="work visa in China" class="draw meet">View Services</a>
            </div>
          </div>
          <div class="herR">
-           <img src="../assets/img/index/web-working-in-China-1.png" alt="">
+           <img src="../assets/img/index/web-working-in-China-1.png" alt="Live an exciting lifestyle, travel to exotic lands, and earn a good living by working in China and teaching in China as an ESL teacher">
          </div>
        </div>
      </div>
@@ -45,77 +50,74 @@
          <h2 class="feaTitle">Featured Opportunities Abroad</h2>
          <div class="container" v-swiper:mySwiper="swiperOption">
            <div class="swiper-wrapper clear">
-             <div class="swiper-slide">
+             <div class="swiper-slide" @click="linkSchool(schoolData1.instituteName)">
                <i class="colorBor1"></i>
-               <img src="../assets/img/index/web-icon-logo-1.png" alt="">
-               <h3 class="schoolTitle">First Leap China</h3>
+               <img :src="schoolData1.logoURL" :alt="schoolData1.logoAlt" class="feaImg">
+               <h3 class="schoolTitle">{{schoolData1.instituteName}}</h3>
                <p class="bodDes">
-                 A business unit of TAL Education Group (
-                 NYSE, TAL), established in Beijing in 2009.
+                 {{schoolData1.instituteTag}}
                </p>
                <div class="bodBott">
                  <ul class="bodData clear">
                    <li class="bodList">
-                     <span class="number">2009</span>
-                     <span class="desName">Established</span>
+                     <span class="number">{{schoolData1.startingYear}}</span>
+                     <span class="desName">ESTABLISHED</span>
                    </li>
                    <li class="bodList">
-                     <span class="number">>2000</span>
-                     <span class="desName">Company Size</span>
+                     <span class="number">{{schoolData1.employeeScale}}</span>
+                     <span class="desName">COMPANY SIZE</span>
                    </li>
                    <li class="bodList">
-                     <span class="number">5</span>
-                     <span class="desName">Open Positions</span>
+                     <span class="number">{{schoolData1.positionSize}}</span>
+                     <span class="desName">OPEN POSITIONS</span>
                    </li>
                  </ul>
                </div>
              </div>
-             <div class="swiper-slide">
+             <div class="swiper-slide" @click="linkSchool(schoolData2.instituteName)">
                <i class="colorBor2"></i>
-               <img src="../assets/img/index/web-icon-logo-2.png" alt="">
-               <h3 class="schoolTitle">First Leap China</h3>
+               <img :src="schoolData2.logoURL" :alt="schoolData2.logoAlt" class="feaImg">
+               <h3 class="schoolTitle">{{schoolData2.instituteName}}</h3>
                <p class="bodDes">
-                 A business unit of TAL Education Group (
-                 NYSE, TAL), established in Beijing in 2009.
+                 {{schoolData2.instituteTag}}
                </p>
                <div class="bodBott">
                  <ul class="bodData clear">
                    <li class="bodList">
-                     <span class="number">2009</span>
-                     <span class="desName">Established</span>
+                     <span class="number">{{schoolData2.startingYear}}</span>
+                     <span class="desName">ESTABLISHED</span>
                    </li>
                    <li class="bodList">
-                     <span class="number">>2000</span>
-                     <span class="desName">Company Size</span>
+                     <span class="number">{{schoolData2.employeeScale}}</span>
+                     <span class="desName">COMPANY SIZE</span>
                    </li>
                    <li class="bodList">
-                     <span class="number">5</span>
-                     <span class="desName">Open Positions</span>
+                     <span class="number">{{schoolData2.positionSize}}</span>
+                     <span class="desName">OPEN POSITIONS</span>
                    </li>
                  </ul>
                </div>
              </div>
-             <div class="swiper-slide">
+             <div class="swiper-slide" @click="linkSchool(schoolData3.instituteName)">
                <i class="colorBor3"></i>
-               <img src="../assets/img/index/web-icon-logo-3.png" alt="">
-               <h3 class="schoolTitle">First Leap China</h3>
+               <img :src="schoolData3.logoURL" :alt="schoolData3.logoAlt" class="feaImg">
+               <h3 class="schoolTitle">{{schoolData3.instituteName}}</h3>
                <p class="bodDes">
-                 A business unit of TAL Education Group (
-                 NYSE, TAL), established in Beijing in 2009.
+                 {{schoolData3.instituteTag}}
                </p>
                <div class="bodBott">
                  <ul class="bodData clear">
                    <li class="bodList">
-                     <span class="number">2009</span>
-                     <span class="desName">Established</span>
+                     <span class="number">{{schoolData3.startingYear}}</span>
+                     <span class="desName">ESTABLISHED</span>
                    </li>
                    <li class="bodList">
-                     <span class="number">>2000</span>
-                     <span class="desName">Company Size</span>
+                     <span class="number">{{schoolData3.employeeScale}}</span>
+                     <span class="desName">COMPANY SIZE</span>
                    </li>
                    <li class="bodList">
-                     <span class="number">5</span>
-                     <span class="desName">Open Positions</span>
+                     <span class="number">{{schoolData3.positionSize}}</span>
+                     <span class="desName">OPEN POSITIONS</span>
                    </li>
                  </ul>
                </div>
@@ -124,84 +126,81 @@
          </div>
          <div class="container1">
            <div class="swiper clear">
-             <div class="swiper-slide">
+             <div class="swiper-slide" @click="linkSchool(schoolData1.instituteName)">
                <i class="colorBor1"></i>
-               <img src="../assets/img/index/web-icon-logo-1.png" alt="">
-               <h3 class="schoolTitle">First Leap China</h3>
+               <img :src="schoolData1.logoURL" :alt="schoolData1.logoAlt" class="feaImg">
+               <h3 class="schoolTitle">{{schoolData1.instituteName}}</h3>
                <p class="bodDes">
-                 A business unit of TAL Education Group (
-                 NYSE, TAL), established in Beijing in 2009.
+                 {{schoolData1.instituteTag}}
                </p>
                <div class="bodBott">
                  <ul class="bodData clear">
                    <li class="bodList">
-                     <span class="number">2009</span>
-                     <span class="desName">Established</span>
+                     <span class="number">{{schoolData1.startingYear}}</span>
+                     <span class="desName">ESTABLISHED</span>
                    </li>
                    <li class="bodList">
-                     <span class="number">>2000</span>
-                     <span class="desName">Company Size</span>
+                     <span class="number">{{schoolData1.employeeScale}}</span>
+                     <span class="desName">COMPANY SIZE</span>
                    </li>
                    <li class="bodList">
-                     <span class="number">5</span>
-                     <span class="desName">Open Positions</span>
+                     <span class="number">{{schoolData1.positionSize}}</span>
+                     <span class="desName">OPEN POSITIONS</span>
                    </li>
                  </ul>
                </div>
              </div>
-             <div class="swiper-slide">
+             <div class="swiper-slide" @click="linkSchool(schoolData2.instituteName)">
                <i class="colorBor2"></i>
-               <img src="../assets/img/index/web-icon-logo-2.png" alt="">
-               <h3 class="schoolTitle">First Leap China</h3>
+               <img :src="schoolData2.logoURL" :alt="schoolData2.logoAlt" class="feaImg">
+               <h3 class="schoolTitle">{{schoolData2.instituteName}}</h3>
                <p class="bodDes">
-                 A business unit of TAL Education Group (
-                 NYSE, TAL), established in Beijing in 2009.
+                 {{schoolData2.instituteTag}}
                </p>
                <div class="bodBott">
                  <ul class="bodData clear">
                    <li class="bodList">
-                     <span class="number">2009</span>
-                     <span class="desName">Established</span>
+                     <span class="number">{{schoolData2.startingYear}}</span>
+                     <span class="desName">ESTABLISHED</span>
                    </li>
                    <li class="bodList">
-                     <span class="number">>2000</span>
-                     <span class="desName">Company Size</span>
+                     <span class="number">{{schoolData2.employeeScale}}</span>
+                     <span class="desName">COMPANY SIZE</span>
                    </li>
                    <li class="bodList">
-                     <span class="number">5</span>
-                     <span class="desName">Open Positions</span>
+                     <span class="number">{{schoolData2.positionSize}}</span>
+                     <span class="desName">OPEN POSITIONS</span>
                    </li>
                  </ul>
                </div>
              </div>
-             <div class="swiper-slide">
+             <div class="swiper-slide" @click="linkSchool(schoolData3.instituteName)">
                <i class="colorBor3"></i>
-               <img src="../assets/img/index/web-icon-logo-3.png" alt="">
-               <h3 class="schoolTitle">First Leap China</h3>
+               <img :src="schoolData3.logoURL" :alt="schoolData3.logoAlt" class="feaImg">
+               <h3 class="schoolTitle">{{schoolData3.instituteName}}</h3>
                <p class="bodDes">
-                 A business unit of TAL Education Group (
-                 NYSE, TAL), established in Beijing in 2009.
+                 {{schoolData3.instituteTag}}
                </p>
                <div class="bodBott">
                  <ul class="bodData clear">
                    <li class="bodList">
-                     <span class="number">2009</span>
-                     <span class="desName">Established</span>
+                     <span class="number">{{schoolData3.startingYear}}</span>
+                     <span class="desName">ESTABLISHED</span>
                    </li>
                    <li class="bodList">
-                     <span class="number">>2000</span>
-                     <span class="desName">Company Size</span>
+                     <span class="number">{{schoolData3.employeeScale}}</span>
+                     <span class="desName">COMPANY SIZE</span>
                    </li>
                    <li class="bodList">
-                     <span class="number">5</span>
-                     <span class="desName">Open Positions</span>
+                     <span class="number">{{schoolData3.positionSize}}</span>
+                     <span class="desName">OPEN POSITIONS</span>
                    </li>
                  </ul>
                </div>
              </div>
            </div>
          </div>
-         <a href="javascript:;" class="linkBut meet1 draw1">
+         <a href="/companies" title="companies in China" class="linkBut meet1 draw1">
            View All
            <span class="top-border"></span>
            <span class="right-border"></span>
@@ -216,19 +215,13 @@
          <div class="life-container" v-swiper:mySwiper1="swiperOption1">
            <div class="swiper-wrapper clear">
              <div class="swiper-slide clear">
-               <img src="../assets/img/index/web-working-in-China-2.jpg" alt="">
+               <img src="../assets/img/index/web-working-in-China-2.jpg" alt="live in China">
                <div class="slide-right">
                  <h3 class="lifeTitle">Live in China</h3>
                  <p class="slideDes">
-                   Living in China is more exciting than many
-                   think. Cities are bustling with restaurants, bars,
-                   shopping & entertainment. Gyms, activity clubs
-                   & social groups make it easy to make friends.
-                   Beyond a busy social life, expat salaries
-                   typically allow a comfortable lifestyle, a modern
-                   apartment & money to save!
-                 </p>
-                 <a href="javascript:;" class="slide-link meet1 draw1">
+                   Living in China is more exciting than many think. Cities are bustling with restaurants, bars, shopping & entertainment. Gyms, activity clubs & social groups make it easy to make friends. Beyond a busy social life, expat salaries typically allow a comfortable lifestyle, a modern apartment & money to save!
+                  </p>
+                 <a href="/live-in-China" title="live in China" class="slide-link meet1 draw1">
                    Learn More
                    <span class="top-border"></span>
                    <span class="right-border"></span>
@@ -238,19 +231,13 @@
                </div>
              </div>
              <div class="swiper-slide clear">
-               <img src="../assets/img/index/web-working-in-China-3.jpg" alt="">
+               <img src="../assets/img/index/web-working-in-China-3.jpg" alt="travel in China">
                <div class="slide-right">
-                 <h3 class="lifeTitle">Live in China</h3>
+                 <h3 class="lifeTitle">Travel in China</h3>
                  <p class="slideDes">
-                   Living in China is more exciting than many
-                   think. Cities are bustling with restaurants, bars,
-                   shopping & entertainment. Gyms, activity clubs
-                   & social groups make it easy to make friends.
-                   Beyond a busy social life, expat salaries
-                   typically allow a comfortable lifestyle, a modern
-                   apartment & money to save!
-                 </p>
-                 <a href="javascript:;" class="slide-link meet1 draw1">
+                   Being in the heart of Asia, it’s easy to explore more than just the countryside of this ancient culture. Low-cost airlines and a vast network of trains enable convenient & inexpensive access to nearby countries. From laying on the beaches of Thailand, skiing in Japan, trekking in Vietnam or meditating in India.
+                  </p>
+                 <a href="/travel-in-China" title="travel in China" class="slide-link meet1 draw1">
                    Learn More
                    <span class="top-border"></span>
                    <span class="right-border"></span>
@@ -260,19 +247,13 @@
                </div>
              </div>
              <div class="swiper-slide clear">
-               <img src="../assets/img/index/web-working-in-China-4.jpg" alt="">
+               <img src="../assets/img/index/web-working-in-China-4.jpg" alt="work in China">
                <div class="slide-right">
-                 <h3 class="lifeTitle">Live in China</h3>
+                 <h3 class="lifeTitle">Work in China</h3>
                  <p class="slideDes">
-                   Living in China is more exciting than many
-                   think. Cities are bustling with restaurants, bars,
-                   shopping & entertainment. Gyms, activity clubs
-                   & social groups make it easy to make friends.
-                   Beyond a busy social life, expat salaries
-                   typically allow a comfortable lifestyle, a modern
-                   apartment & money to save!
-                 </p>
-                 <a href="javascript:;" class="slide-link meet1 draw1">
+                   Not only can expats earn a good living by working in China, but having international work experience is a huge benefit in today’s competitive job market. Plus, transferrable skills go beyond just working on a diverse team. Daily life such as communicating and problem- solving build lifetime character.
+                  </p>
+                 <a href="/work-in-China" title="work in China" class="slide-link meet1 draw1">
                    Learn More
                    <span class="top-border"></span>
                    <span class="right-border"></span>
@@ -293,13 +274,7 @@
            <div class="list-right">
              <h3 class="lifeTitle">Live in China</h3>
              <p class="slideDes">
-               Living in China is more exciting than many
-               think. Cities are bustling with restaurants, bars,
-               shopping & entertainment. Gyms, activity clubs
-               & social groups make it easy to make friends.
-               Beyond a busy social life, expat salaries
-               typically allow a comfortable lifestyle, a modern
-               apartment & money to save!
+               Living in China is more exciting than many think. Cities are bustling with restaurants, bars, shopping & entertainment. Gyms, activity clubs & social groups make it easy to make friends. Beyond a busy social life, expat salaries typically allow a comfortable lifestyle, a modern apartment & money to save!
              </p>
            </div>
          </li>
@@ -308,7 +283,7 @@
            <div class="list-right">
              <h3 class="lifeTitle">Travel in China</h3>
              <p class="slideDes">
-               Living in China is more exciting than many think. Cities are bustling                with restaurants, bars, shopping & entertainment. Gyms, activity clubs &              social groups make it easy to make friends. Beyond a busy social life,                expat salaries typically allow a comfortable lifestyle, a modern                      apartment & money to save!
+               Being in the heart of Asia, it’s easy to explore more than just the countryside of this ancient culture. Low-cost airlines and a vast network of trains enable convenient & inexpensive access to nearby countries. From laying on the beaches of Thailand, skiing in Japan, trekking in Vietnam or meditating in India.
              </p>
            </div>
          </li>
@@ -317,13 +292,7 @@
            <div class="list-right">
            <h3 class="lifeTitle">Work in China</h3>
            <p class="slideDes">
-             Living in China is more exciting than many
-             think. Cities are bustling with restaurants, bars,
-             shopping & entertainment. Gyms, activity clubs
-             & social groups make it easy to make friends.
-             Beyond a busy social life, expat salaries
-             typically allow a comfortable lifestyle, a modern
-             apartment & money to save!
+             Not only can expats earn a good living by working in China, but having international work experience is a huge benefit in today’s competitive job market. Plus, transferrable skills go beyond just working on a diverse team. Daily life such as communicating and problem- solving build lifetime character.
            </p>
            </div>
          </li>
@@ -344,12 +313,13 @@
          <el-carousel :interval="5000" type="card" :autoplay=false height=230px arrow="always" :initial-index=1>
            <el-carousel-item>
              <div class="slide" @click="videoTwo">
-               <img src="../assets/img/index/web-working-in-China-9.jpg" alt="">
-               <i class="people-play-icon"></i>
+               <img src="../assets/img/index/web-working-in-China-9.jpg" alt="Adventure in China">
+               <div class="people-play">
+                 <i class="people-play-icon"></i>
+               </div>
                <div class="bannerDes">
                  <p class="peopleDes">
-                   “I was tired of the same mundane routine, everyday doing the same thing. I wanted adventure, I wanted excitement.
-  So I figured China would do that for me.”
+                   “I was tired of the same mundane routine, everyday doing the same thing. I wanted adventure, I wanted excitement. So I figured China would do that for me.”
                  </p>
                  <span class="name">
                    —— Thea from Tampa, Florida USA
@@ -360,15 +330,16 @@
            </el-carousel-item>
            <el-carousel-item>
              <div class="slide" @click="videoOne">
-               <img src="../assets/img/index/web-working-in-China-8.jpg" alt="">
-               <i class="people-play-icon"></i>
+               <img src="../assets/img/index/web-working-in-China-8.jpg" alt="Move to China">
+               <div class="people-play">
+                 <i class="people-play-icon"></i>
+               </div>
                <div class="bannerDes">
                  <p class="peopleDes">
-                   “I was tired of the same mundane routine, everyday doing the same thing. I wanted adventure, I wanted excitement.
-  So I figured China would do that for me.”
+                   “As soon as we landed, it was reassuring that this was the right thing. We were greeted at the airport with smiling faces from people from my school.”
                  </p>
                  <span class="name">
-                 —— Thea from Tampa, Florida USA
+                 —— Josh from Atlanta, Georgia USA
                </span>
                </div>
              </div>
@@ -376,15 +347,16 @@
            </el-carousel-item>
            <el-carousel-item>
              <div class="slide" @click="videoThree">
-               <img src="../assets/img/index/web-working-in-China-10.jpg" alt="">
-               <i class="people-play-icon"></i>
+               <img src="../assets/img/index/web-working-in-China-10.jpg" alt="Opportunities in China">
+               <div class="people-play">
+                 <i class="people-play-icon"></i>
+               </div>
                <div class="bannerDes">
                  <p class="peopleDes">
-                   “I was tired of the same mundane routine, everyday doing the same thing. I wanted adventure, I wanted excitement.
-  So I figured China would do that for me.”
+                   “The thing that surprised me the most about moving to China is the opportunities and the chance to make good money here.”
                  </p>
                  <span class="name">
-                 —— Thea from Tampa, Florida USA
+                 —— Daniel from Leeds, UK
                </span>
                </div>
              </div>
@@ -498,7 +470,7 @@ ensuring a comfortable transition to your life in China.
              </li>
            </ul>
 
-           <a href="javascript:;" class="serLink meet1 draw1">
+           <a href="/how-to-move-to-China" title="Move to China" class="serLink meet1 draw1">
              Learn More
              <span class="top-border"></span>
              <span class="right-border"></span>
@@ -510,8 +482,8 @@ ensuring a comfortable transition to your life in China.
            <h2 class="comTitle">
              We Only Work With Top Chinese Companies
            </h2>
-           <img src="../assets/img/index/web-icon-logo.jpg" alt="">
-           <a href="javascript:;" class="comLink meet1 draw1">
+           <img src="../assets/img/index/web-icon-logo.jpg" alt="Schools in China">
+           <a href="http://business.careerchina.com" title="business in China" class="comLink meet1 draw1" target="_blank">
              Register As Employer
              <span class="top-border"></span>
              <span class="right-border"></span>
@@ -531,12 +503,13 @@ ensuring a comfortable transition to your life in China.
 <script type="text/ecmascript-6">
   import $ from 'jquery'
   import Vue from 'vue'
-  import VueResource from 'vue-resource';
-  import '../assets/css/reset.min.css'
+  import VueResource from 'vue-resource'
+  import interfaceStr from '../assets/js/interface.js'
   import nav from '../components/public/nav/nav'
   import submitEmail from '../components/public/submit/submitEmail'
   import footer from '../components/public/footer/footer'
   import goTop from '../components/public/goTop/goTop'
+  import ipadNav from '../components/public/ipad-nav/ipadNav'
   if (process.BROWSER_BUILD) {
     const VueAwesomeSwiper = require('vue-awesome-swiper/ssr');
     Vue.use(VueAwesomeSwiper);
@@ -544,7 +517,7 @@ ensuring a comfortable transition to your life in China.
   }
   export default{
     head:{
-      title:'TEFL / ESL / TESOL | Teach English Jobs in China',
+      title:'Career China | Your Resource for Living, Traveling, and Working in China.',
       link:[
         { rel: 'stylesheet', href: 'https://unpkg.com/element-ui/lib/theme-default/index.css' }
       ],
@@ -560,13 +533,19 @@ ensuring a comfortable transition to your life in China.
             video1:false,
             video2:false,
             video3:false,
+            ipad:false,
+            schoolData1:'',
+            schoolData2:'',
+            schoolData3:'',
             swiperOption: {
-              autoplay: 5000,
-              initialSlide: 1,
+              /*autoplay: 5000,*/
+              initialSlide: 0,
               loop: true,
               pagination: '.swiper-pagination',
-              width:333,
               paginationType : 'progress',
+              centeredSlides : true,
+              width:333,
+              spaceBetween : 5,
               autoplayDisableOnInteraction : false,
               paginationProgressRender: function (swiper, progressbarClass) {
                 return '<span class="' + progressbarClass + '"></span>';
@@ -589,7 +568,8 @@ ensuring a comfortable transition to your life in China.
         'v-nav':nav,
         'v-submitEmail':submitEmail,
       'v-footer':footer,
-      'v-goTop':goTop
+      'v-goTop':goTop,
+      'v-ipadNav':ipadNav
     },
     methods:{
       watchW(){
@@ -626,12 +606,31 @@ ensuring a comfortable transition to your life in China.
         this.maskblock=true;
         document.getElementById('myVideo3').play()
       },
-    },
-    created(){
+      ipadShow(){
+        this.ipad=true
+      },
+      ipadHide(){
+        this.ipad=false
+      },
+      linkSchool(name){
+          var reg=/\s+/g;
+          var newName=name.replace(reg,'-');
+         window.open('/company/'+newName+'.html')
+      }
 
     },
     mounted(){
-    },
+      this.$http({
+        method:'GET',
+        url:interfaceStr+'/cc/to/c/responseInstitute.action'
+      }).then(function(data){
+        this.schoolData1 = data.body.institute[0];
+        this.schoolData2 = data.body.institute[1];
+        this.schoolData3 = data.body.institute[2];
+      }, function (error) {
+
+      });
+    }
   }
 </script>
 
@@ -659,19 +658,30 @@ ensuring a comfortable transition to your life in China.
     padding-top: 170px;
   }
   .herL .playM{
+    position: relative;
     margin: auto;
     width: 50px;
     height: 50px;
-    background: url("../assets/img/index/web-icon-player-normal.png")no-repeat;
     cursor: pointer;
-    border-radius: 50%;
     display: none;
+    border-radius: 50%;
+    background: #fff;
+    transition: all .5s;
+  }
+  .herL .playM .playM-icon{
+    position: absolute;
+    left: 50%;
+    top:50%;
+    margin-left: -2px;
+    margin-top: -4.5px;
+    width: 8px;
+    height: 11px;
+    background: url("../assets/img/index/icon-player-normal.svg")no-repeat;
   }
   .herL .playM:hover{
-    box-shadow: 0 4px 8px rgba(0,0,0,.4);
+    box-shadow: 0 5px 8px 0 rgba(9,56,94,.28);
   }
   .herL .webH1,.mH1{
-    font-family: AvenirNext-Bold;
     color: #FFFFFF;
     letter-spacing: 0;
     line-height: 62px;
@@ -687,16 +697,27 @@ ensuring a comfortable transition to your life in China.
     text-align: center;
   }
   .herL .play{
-    display: block;
+    position: relative;
     margin: 16px 0 20px 0;
     width: 50px;
     height: 50px;
-    background: url("../assets/img/index/web-icon-player-normal.png")no-repeat;
     cursor: pointer;
     border-radius: 50%;
+    background: #fff;
+    transition: all .5s;
+  }
+  .herL .play .play-icon{
+    position: absolute;
+    left: 50%;
+    top:50%;
+    margin-left: -2px;
+    margin-top: -4.5px;
+    width: 8px;
+    height: 11px;
+    background: url("../assets/img/index/icon-player-normal.svg")no-repeat;
   }
   .herL .play:hover{
-    box-shadow: 0 4px 8px rgba(0,0,0,.4);
+    box-shadow: 0 5px 8px 0 rgba(9,56,94,.28);
   }
   .herL .herDes{
     font-size: 16px;
@@ -729,7 +750,6 @@ ensuring a comfortable transition to your life in China.
     width: 200px;
     height: 44px;
     line-height: 44px;
-    border-radius: 2px;
     text-transform: capitalize;
     border: 0;
     box-sizing: border-box;
@@ -751,7 +771,6 @@ ensuring a comfortable transition to your life in China.
     transition: color 0.25s;
   }
   .draw::before, .draw::after {
-    border-radius: 2px;
     width: 0;
     height: 0;
   }
@@ -807,6 +826,8 @@ ensuring a comfortable transition to your life in China.
     margin-right: 20px;
     box-shadow: 0 2px 10px 0 rgba(0,0,0,0.08);
     background: #fff;
+    transition: all .5s;
+    cursor: pointer;
   }
   .colorBor1,.colorBor2,.colorBor3{
     display: block;
@@ -823,14 +844,16 @@ ensuring a comfortable transition to your life in China.
     background-image: -webkit-linear-gradient(-135deg, #C56FF1 0%, #F8566A 100%);
   }
   .swiper-slide:hover{
-    box-shadow: 0 2px 10px 0 rgba(0,0,0,0.12);
+    box-shadow: 0 4px 20px 0 rgba(0,0,0,0.14);
   }
   .swiper-slide:last-child{
     margin-right: 0;
   }
-  .swiper-slide img{
+  .swiper-slide .feaImg{
     display: block;
-    margin:18px auto;
+    margin:50px auto;
+    width: 240px;
+    height: 90px;
   }
   .swiper-slide .schoolTitle{
     margin: 18px 0 14px 0;
@@ -842,7 +865,9 @@ ensuring a comfortable transition to your life in China.
     padding: 0 20px;
     font-size: 14px;
     color: #989898;
-    line-height: 16px;
+    line-height: 18px;
+    height: 35px;
+    overflow: hidden;
   }
   .bodBott{
     padding: 0 20px;
@@ -854,14 +879,14 @@ ensuring a comfortable transition to your life in China.
   }
   .swiper-slide .bodData .bodList{
     float: left;
-    width: 33%;
+    margin-right: 10px;
   }
   .swiper-slide .bodData .bodList span{
     display: block;
     text-align: center;
   }
   .swiper-slide .bodData .bodList .number{
-    margin-bottom: 7px;
+    margin-bottom: 2px;
     font-size: 16px;
     color: #333435;
   }
@@ -882,12 +907,11 @@ ensuring a comfortable transition to your life in China.
     text-align: center;
     font-size: 14px;
     color: #333435;
-    /*border: 0;
-    box-shadow: inset 0 0 0 1px rgba(0,0,0,.6);*/
     border: 1px solid;
     border-image: -webkit-linear-gradient( 135deg, #19DFE8 0% , #4B4DFF 100%) 20 20;
     border-image: -moz-linear-gradient( 135deg, #19DFE8 0% , #4B4DFF 100%) 20 20;
     border-image: linear-gradient(  135deg, #19DFE8 0% , #4B4DFF 100%) 20 20;
+    font-weight: bold;
   }
   .life{
     width: 100%;
@@ -908,6 +932,7 @@ ensuring a comfortable transition to your life in China.
   .life-container .swiper-wrapper .swiper-slide{
     margin-right: 0;
     height: 490px;
+    box-shadow: none;
   }
   .life-container .swiper-wrapper .swiper-slide img{
     float: left;
@@ -944,6 +969,7 @@ ensuring a comfortable transition to your life in China.
     text-align: center;
     font-size: 14px;
     color: #333435;
+    font-weight: bold;
   }
   .swiper-pagination-life{
     position: absolute;
@@ -968,7 +994,7 @@ ensuring a comfortable transition to your life in China.
     top:-1px;
     left: 0;
     width: 149px;
-    height: 2px;
+    height: 1px;
     background-image: linear-gradient(  135deg, #19DFE8 0% , #4889FF 100%);
     border-radius: 2px;
     animation: borderMoveWidth 1.5s linear 4.5s 1;
@@ -980,7 +1006,7 @@ ensuring a comfortable transition to your life in China.
     position: absolute;
     top:0;
     right: -1px;
-    width: 2px;
+    width: 1px;
     height: 149px;
     background-image: linear-gradient(  135deg, #4889FF 0% , #4B4DFF 100%);
     border-radius: 2px;
@@ -994,7 +1020,7 @@ ensuring a comfortable transition to your life in China.
     bottom:-1px;
     right: 0;
     width: 149px;
-    height: 2px;
+    height: 1px;
     background-image: linear-gradient(  270deg, #4B4DFF 0% , #4889FF 100%);
     border-radius: 2px;
     animation: borderMoveWidth 1.5s linear 1.5s 1;
@@ -1006,7 +1032,7 @@ ensuring a comfortable transition to your life in China.
     position: absolute;
     bottom:0;
     left: -1px;
-    width: 2px;
+    width: 1px;
     height: 149px;
     border-radius: 2px;
     background-image: linear-gradient(  45deg, #4889FF 0% , #19DFE8 100%);
@@ -1111,7 +1137,7 @@ ensuring a comfortable transition to your life in China.
   .ipLife .lifeList .list-right .slideDes{
     font-size: 14px;
     color: #989898;
-    line-height: 18px;
+    line-height: 22px;
   }
 
   .people{
@@ -1162,7 +1188,7 @@ ensuring a comfortable transition to your life in China.
   }
   .el-carousel__indicators--outside{
     position: absolute !important;
-    bottom: -168px;
+    bottom: -180px;
     height: 10px;
     margin-left: -30px;
   }
@@ -1247,7 +1273,7 @@ ensuring a comfortable transition to your life in China.
     z-index: 99;
     background: #000;
   }
-  .people .people-play-icon{
+  .people .people-play{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1255,9 +1281,20 @@ ensuring a comfortable transition to your life in China.
     margin-left: -25px;
     width: 50px;
     height: 50px;
-    background: url("../assets/img/index/web-icon-player-normal.png")no-repeat;
+    background: #fff;
     cursor: pointer;
     border-radius: 50%;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.16);
+  }
+  .people .people-play-icon{
+    position: absolute;
+    left:50%;
+    top:50%;
+    width: 8px;
+    height: 11px;
+    margin-left: -2px;
+    margin-top: -4.5px;
+    background: url("../assets/img/index/icon-player-normal.svg")no-repeat;
   }
 
   .serCom{
@@ -1288,7 +1325,7 @@ ensuring a comfortable transition to your life in China.
   }
   .ser .serTab .serList{
     float: left;
-    margin-right: 144px;
+    margin-right: 140px;
   }
   .ser .serTab .serList:nth-child(4){
     margin-right: 0;
@@ -1382,9 +1419,9 @@ ensuring a comfortable transition to your life in China.
   }
   .phone-ser-tab .phone-list{
     float: left;
-    width: 160px;
+    width: 50%;
     font-size: 0;
-    margin-right: 20px;
+    padding-left: 24px;
   }
   .phone-ser-tab .phone-list .phone-iconBack1,.phone-iconBack2,.phone-iconBack3,.phone-iconBack4,.phone-iconBack5,.phone-iconBack6,.phone-iconBack7{
     display: inline-block;
@@ -1404,7 +1441,7 @@ ensuring a comfortable transition to your life in China.
   }
   .phone-ser-tab .phone-list .iconDes{
     display: inline-block;
-    font-size: 14px;
+    font-size: 12px;
     color: #333435;
   }
   .ser .line1,.line2,.line3,.line4,.line5{
@@ -1413,10 +1450,10 @@ ensuring a comfortable transition to your life in China.
     height: 30px;
   }
   .ser .line1,.line2,.line3{
-    background: url("../assets/img/index/web-icon-guide-line-up.png")no-repeat center;
+    background: url("../assets/img/index/web-icon-guide-line-up.svg")no-repeat center;
   }
   .ser .line4,.line5{
-    background: url("../assets/img/index/web-icon-guide-line-down.png")no-repeat center;
+    background: url("../assets/img/index/web-icon-guide-line-down.svg")no-repeat center;
   }
   .ser .line1{
     top: -20px;
@@ -1578,10 +1615,9 @@ ensuring a comfortable transition to your life in China.
     }
     .swiper-slide .bodDes{
       font-size: 13px;
-      line-height: 15px;
     }
-    .feaLink{
-      margin: 48px auto;
+    .linkBut{
+      margin: 50px auto;
     }
     .container1{
       display: none;
@@ -1589,7 +1625,7 @@ ensuring a comfortable transition to your life in China.
     .container{
       display: block;
       overflow: hidden;
-      height: 355px;
+      height: 400px;
 
     }
     .swiper-wrapper{
@@ -1620,7 +1656,7 @@ ensuring a comfortable transition to your life in China.
       padding-bottom: 0;
     }
     .ser .serTab .serList{
-      margin-right: 70px;
+      margin-right: 65px;
     }
     .ser .serTab .serList:nth-child(5){
       margin-left: 80px;
@@ -1664,6 +1700,10 @@ ensuring a comfortable transition to your life in China.
     .people{
       padding: 60px 0;
       height: 520px;
+    }
+    .el-carousel__arrow--right,.el-carousel__arrow--left{
+      right: inherit;
+      display: none;
     }
     .videoBox{
       width: 600px;
@@ -1772,6 +1812,12 @@ ensuring a comfortable transition to your life in China.
     }
     .ipLife .lifeList .list-right .slideDes{
       margin-left: 4px;
+    }
+    .linkBut{
+      margin: 30px auto;
+    }
+    .phone-ser-tab{
+      margin: 30px auto;
     }
   }
 </style>

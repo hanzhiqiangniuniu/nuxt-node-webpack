@@ -78,7 +78,7 @@
         }
         if (reg1.test(this.Usertext) && reg2.test(this.Usertext)) {
           let _this = this;
-          _this.$http.post('http://' + interfaceStr + '/cc/to/c/storageEmail.action', {'email': this.Usertext}).then(function (response) {
+          _this.$http.post(interfaceStr + '/cc/to/c/storageEmail.action', {'email': this.Usertext}).then(function (response) {
             if (response.body.insertResult === true) {
               _this.success = true;
               window.clearTimeout(timer);
@@ -161,7 +161,7 @@
   }
 
   .emSu .auto .inputBox .bg1:hover {
-    background-image: linear-gradient(135deg, #16C8D0 0%, #4889FF 54%, #4345E5 100%);
+    background-image: linear-gradient(135deg, #17CFD7 0%, #4889FF 54%, #3133DF 100%)
   }
 
   .emSu .auto .inputBox .bg2 {
@@ -196,10 +196,10 @@
 
   .emSu .auto .inputBox .worBox .worIcon {
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     vertical-align: middle;
-    background: url("./icon-warning.png") no-repeat;
+    background: url("./icon-warning.svg") no-repeat;
   }
 
   .emSu .auto .inputBox .worBox .worWord {
@@ -261,6 +261,9 @@
     .emSu .auto .inputBox .inputBtn{
       width: 23%;
       margin-left: 7%;
+    }
+    .emSu .auto h2{
+      font-size: 16px;
     }
   }
 </style>

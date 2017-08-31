@@ -1,22 +1,25 @@
 <template>
   <div class="companies">
-    <v-nav></v-nav>
+    <v-nav @refreshList="ipadShow"></v-nav>
     <v-jobSeNav></v-jobSeNav>
+    <v-ipadNav v-show="this.ipad" @close="ipadHide"></v-ipadNav>
     <div class="banner-box">
       <div class="auto">
         <span class="title-tag">WE WORK WITH </span>
-        <h2>
+        <h1>
           TOP ENGLISH SCHOOLS AND<br/>
           INSTITUTES IN CHINA
-        </h2>
+        </h1>
       </div>
     </div>
     <ul class="school-tab clear">
-      <li class="school-list"v-for="school in schoolData">
+      <li class="school-list"v-for="school in schoolData" @click="linkSchool(school.instituteName)">
         <div class="top clear">
-          <img :src="school.logoURL" alt="">
+          <div class="school-logo-box">
+            <img :src="school.logoURL" :alt="school.logoAlt">
+          </div>
           <div class="desBox">
-            <h3 class="schoolTitle">{{school.instituteName}}</h3>
+            <h2 class="schoolTitle">{{school.instituteName}}</h2>
             <p class="bodDes">
               {{school.instituteTag}}
             </p>
@@ -51,11 +54,11 @@
   import VueResource from 'vue-resource';
   import interfaceStr from '../assets/js/interface.js'
   import addthis from '../assets/js/addthis.js';
-  import '../assets/css/reset.min.css'
   import nav from '../components/public/nav/nav'
   import jobSeNav from '../components/public/job-seNav/job-seNav'
   import footer from '../components/public/footer/footer'
   import goTop from '../components/public/goTop/goTop'
+  import ipadNav from '../components/public/ipad-nav/ipadNav'
   var addthis_share = {};
   if (process.BROWSER_BUILD) {
     Vue.use(VueResource);
@@ -63,19 +66,48 @@
   export default{
     data(){
         return{
-          schoolData:''
+          schoolData:'',
+          ipad:false
         }
+    },
+    head:{
+      title:'Explore companies in China',
+      meta:[
+        { name: 'keywords', content: 'Companies in China'},
+        { name: 'description', content: 'Learn more about schools in China, and their open positions'},
+        { property: 'og:url', content: 'www.careerchina.com/companies'},
+        { property: 'og:type', content: 'article'},
+        { property: 'og:image', content: 'http://material.careerchina.com/img/7538c48a-a7ec-4943-ba30-1f245e232747.jpg'},
+        { name: 'twitter:card', content: 'http://material.careerchina.com/img/7538c48a-a7ec-4943-ba30-1f245e232747.jpg'},
+        { name: 'twitter:creator', content: 'careerchina'},
+        { name: 'twitter:image', content: 'http://material.careerchina.com/img/7538c48a-a7ec-4943-ba30-1f245e232747.jpg'},
+        { itemprop: 'image', content: 'http://material.careerchina.com/img/7538c48a-a7ec-4943-ba30-1f245e232747.jpg'},
+      ]
     },
     components:{
       'v-nav':nav,
       'v-jobSeNav':jobSeNav,
       'v-footer':footer,
-      'v-goTop':goTop
+      'v-goTop':goTop,
+      'v-ipadNav':ipadNav
+    },
+    methods:{
+      linkSchool(name){
+          var reg=/\s+/g;
+          var newName=name.replace(reg,'-');
+          window.open('/company/'+newName+'.html')
+      },
+      ipadShow(){
+        this.ipad=true
+      },
+      ipadHide(){
+        this.ipad=false
+      }
     },
     mounted(){
       this.$http({
         method:'GET',
-        url:'http://'+interfaceStr+'/cc/to/c/responseInstitute.action'
+        url:interfaceStr+'/cc/to/c/responseInstitute.action'
       }).then(function(data){
         this.schoolData = data.body.institute;
       }, function (error) {
@@ -110,7 +142,7 @@
     color: #fff;
     font-weight: bold;
   }
-  .banner-box .auto h2{
+  .banner-box .auto h1{
     font-size: 40px;
     color: #fff;
     text-align: center;
@@ -128,9 +160,10 @@
     box-shadow: 0 0 6px 0 rgba(0,0,0,0.08);
     cursor: pointer;
     height: 360px;
+    transition: all .5s;
   }
   .school-tab .school-list:hover{
-    box-shadow: 0 0 6px 0 rgba(0,0,0,.2);
+    box-shadow: 0 4px 20px 0 rgba(0,0,0,.1);
   }
   .school-list img{
     display: block;
@@ -143,6 +176,13 @@
     font-size: 18px;
     color: #333435;
     text-align: center;
+    padding: 0 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .school-list .schoolTitle:hover{
+    text-decoration: underline;
   }
   .school-list .bodDes{
     padding: 0 20px;
@@ -194,7 +234,7 @@
     .banner-box .auto .title-tag{
       font-size: 16px;
     }
-    .banner-box .auto h2{
+    .banner-box .auto h1{
       font-size: 32px;
       line-height: 46px;
     }
@@ -219,7 +259,7 @@
     .banner-box .auto .title-tag{
       font-size: 12px;
     }
-    .banner-box .auto h2{
+    .banner-box .auto h1{
       font-size: 18px;
       line-height: 26px;
     }
@@ -236,15 +276,19 @@
     .school-tab .school-list:last-child{
       margin-bottom: 0;
     }
+    .school-list .school-logo-box{
+      float: left;
+      padding: 20px 5px;
+      border: 1px solid #F9F9FB;
+    }
     .school-list .top{
       margin: 16px 0;
       height: 68px;
     }
     .school-list img{
-      margin:17px 0 0 10px;
-      float: left;
       width: 90px;
       height: 34px;
+      margin: inherit;
     }
     .school-list .desBox{
       float: right;
@@ -273,7 +317,8 @@
       margin-top: 22px;
     }
     .school-list .bodData .bodList{
-      width: 30%;
+      width: 33%;
+      margin-right: 0;
     }
   }
 </style>

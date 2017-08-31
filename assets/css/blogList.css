@@ -96,6 +96,12 @@
   letter-spacing: 0;
   line-height: 18px;
   cursor: pointer;
+  display: block;
+  height: 18px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: 400;
 }
 
 .blogClass .blog-tab .blog-list .listL .title:hover {
@@ -190,16 +196,20 @@
   }
   .blogClass .blog-tab .blog-list{
     padding: 14px;
+    display: flex;
   }
   .blogClass .blog-tab .blog-list .listL {
     width: 388px;
     margin-top: 6px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
   }
   .blogClass .blog-tab .blog-list .listL .title{
     display: block;
     line-height: 24px;
-    height: 49px;
-    overflow: hidden;
+    height: inherit;
+    white-space: inherit;
   }
   .blogClass .blog-tab .blog-list .listL .author{
     margin-top: 6px;
@@ -210,6 +220,7 @@
   .blogClass .blog-tab .blog-list .listImg{
     width: 252px;
     height: 140px;
+    margin-left: 4%;
   }
   .blogClass .blog-tab .blog-list .listL .listField{
     height: 40px;
@@ -237,6 +248,7 @@
   }
   .slide .bannerDes .blogTitle{
     font-size: 14px;
+    line-height: 34px;
   }
   .slide .bannerDes .blogDes{
     display: none;
@@ -256,6 +268,7 @@
   }
   .blogClass .blog-tab .blog-list{
     padding: 7px 7px 7px 10px;
+    margin-bottom: 2px;
   }
   .blogClass .blog-tab .blog-list .listL {
     width: 60%;
@@ -264,7 +277,6 @@
   .blogClass .blog-tab .blog-list .listL .title{
     font-size: 14px;
     line-height: 16px;
-    height: 48px;
   }
   .blogClass .blog-tab .blog-list .listL .bgLine{
     display: none;

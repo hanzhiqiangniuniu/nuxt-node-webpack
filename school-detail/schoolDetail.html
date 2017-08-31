@@ -63,6 +63,38 @@
         </li>
       </ul>
     </div>
+    <!--手机端一级导航-->
+    <div class="ipadNav">
+      <div class="ulBox">
+        <ul class="navTab">
+          <li class="navList">
+            <a href="/">HOME</a>
+          </li>
+          <li class="navList">
+            <a href="/jobs-in-China" class="active">OPPORTUNITIES</a>
+          </li>
+          <li class="navList">
+            <a href="/how-to-move-to-China">SERVICES</a>
+          </li>
+          <li class="navList">
+            <a href="/life-in-China-blog">BLOG</a>
+          </li>
+          <li class="navList">
+            <a href="/about-career-China">ABOUT US</a>
+          </li>
+          <li class="line"></li>
+          <li class="navList">
+            <a href="javascript:;">EMPLOYER ACCESS</a>
+          </li>
+        </ul>
+        <div class="nav-open">
+          <button class="cd-nav-trigger1">
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+
+    </div>
     <!--TOP content-->
     <div class="top-content">
       <div class="auto clear">
@@ -135,7 +167,7 @@
           <h6>INTRODUCTION</h6>
           <i class="line"></i>
           <div class="text-box">
-            <p class="con-text">
+            <p class="text">
               First Leap English, a business unit of TAL Education Group (NYSE, TAL), established in Beijing in 2009, is flourishing and expanding across China, with over 30, 000 students, and top 3 brand recognition in the Chinese education industry. Created to provide much-needed quality afterschool English training for children aged 1.5 – 15 years old, in a fun, motivating and entirely English speaking environment.
               <br/> <br/> <br/>
               First Leap provides children with high quality and full scene English education. The school has developing and innovating internationally leading educational products and services since 2008. Which committed to providing scientific parenting solutions for Chinese families. Teaching English is not only purpose, but also encourage and cultivate children’s self-confidence, happiness, and comprehensive quality leadership, with a new generation of global competitiveness.
@@ -214,7 +246,6 @@
           </li>
         </ul>
       </div>
-
     </div>
     <div class="position tab-content">
       <ul class="jobs-tab">
@@ -368,6 +399,10 @@
         </li>
       </ul>
     </div>
+    <!--go-top-->
+    <div class="goTop" id="goTop">
+      <i class="normal" id="normal"></i>
+    </div>
     <!--footer-->
     <div class="footer">
       <div class="site">
@@ -509,7 +544,43 @@
 </script>
 <script type="text/javascript">
   $('#slide').click(function () {
-    this.className = this.className === 'slideshow'? 'nav-open' : 'slideshow'
-  })
+      this.className=this.className==='slideshow'?'nav-open':'slideshow';
+    $('.ipadNav').fadeIn(500)
+  });
+  $('.nav-open').click(function () {
+    $('#slide').removeClass('nav-open');
+    $('#slide').addClass('slideshow');
+    $('.ipadNav').fadeOut(500)
+  });
+/*回到顶部*/
+  var oTop=document.getElementById('goTop');
+  window.onscroll=computedDisplay;
+  function computedDisplay() {
+    var scrollT=document.body.scrollTop ||document.documentElement.scrollTop;
+    var clientH=document.documentElement.clientHeight;
+    if(scrollT>clientH){
+      oTop.style.display='block'
+    }else{
+      oTop.style.display='none'
+    }
+  }
+  oTop.onclick=function () {
+    this.style.display='none';
+    window.onscroll=null;
+    var target=document.body.scrollTop;
+    var duration=1000;
+    var interval=10;
+    var step=target/duration*interval;
+    var timer=setInterval(function () {
+      var curTop=document.body.scrollTop;
+      if(curTop<=0){
+        clearInterval(timer)
+        window.onscroll=computedDisplay;
+        return
+      }
+      curTop-=step;
+      document.body.scrollTop=curTop;
+    },interval)
+  };
 </script>
 </html>

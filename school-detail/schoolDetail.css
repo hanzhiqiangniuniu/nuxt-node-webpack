@@ -654,9 +654,9 @@
   height: 50px;
   background: url("web-icon-player-normal.png")no-repeat center;
 }
-/*.profile .con-left .video-box .play-icon:hover{
+.profile .con-left .video-box .play-icon:hover{
   box-shadow: 0 4px 8px rgba(0,0,0,.4);
-}*/
+}
 .profile .con-left .content-data{
   margin: 20px 0;
   padding: 30px 25px;
@@ -677,7 +677,7 @@ h6{
   height: 1px;
   background-image: linear-gradient(45deg,#19DFE8 0%,#4B4DFF 100%);
 }
-.profile .con-left .content-data .con-text{
+.profile .con-left .content-data p{
   font-size: 16px;
   color: #333435;
   letter-spacing: 0;
@@ -951,7 +951,7 @@ h6{
   background-image: linear-gradient(135deg, #19DFE8 0%, #4B4DFF 100%);
 }
 .jobs-list .category,.jobs-list .sub-grade .sub,.jobs-list .sub-grade .grade{
-  width: 470px;
+  width: 476px;
   font-size: 0;
   margin-bottom: 16px;
 }
@@ -963,9 +963,16 @@ h6{
 }
 .jobs-list .category .cate-name,.sub-grade .sub .sub-name,.sub-grade .grade .grade-name{
   margin-right: 10px;
+  background: #FAFAFC;
+  border: 1px solid #E9EDFB;
+  border-radius: 100px;
+  width: 76px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
 }
 .jobs-list .category .cate-des,.sub-grade .sub .sub-des,.sub-grade .grade .grade-des{
-  width: 395px;
+  width: 380px;
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
@@ -1075,12 +1082,8 @@ h6{
     width:100%;
 
   }
-  .jobs-list .category .cate-name,.sub-grade .sub .sub-name,.sub-grade .grade .grade-name{
-    margin-right: inherit;
-    width: 73px;
-  }
   .jobs-list .category .cate-des,.sub-grade .sub .sub-des,.sub-grade .grade .grade-des{
-    width: 565px;
+    width: 550px;
   }
   .jobs-list .sub-grade .sub{
     float: inherit;
@@ -1125,7 +1128,7 @@ h6{
   .profile{
     width: 100%;
     margin:10px 0 0 0;
-    padding: 0 0 0 0;
+    padding: 30px 0 0 0;
     background: transparent;
   }
   .profile .con-left{
@@ -1171,15 +1174,40 @@ h6{
   }
   .jobs-list .category .cate-name,.sub-grade .sub .sub-name,.sub-grade .grade .grade-name{
     width: 20%;
+    margin-right: 3%;
   }
   .jobs-list .category .cate-des,.sub-grade .sub .sub-des,.sub-grade .grade .grade-des{
-    width: 80%;
+    width: 76%;
   }
   .jobs-list .m-date{
     display: block;
   }
 }
 
+.goTop {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  right: 40px;
+  bottom: 460px;
+  display: none;
+  z-index: 99;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.goTop .normal {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url("./web-button-top-normal.png") no-repeat center;
+  background-size: cover;
+}
+
+.goTop .normal:hover {
+  background: url("./web-button-top-press.png") no-repeat center;
+  background-size: cover;
+}
 .footer .site {
   position: relative;
   width: 100%;
@@ -1429,5 +1457,98 @@ h6{
   }
   .siteMain1 .linkTab a{
     width: 14%;
+  }
+}
+
+.ipadNav{
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.4);
+  z-index: 120;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  display: none;
+}
+.ulBox{
+  position: relative;
+  height: 100%;
+}
+.ipadNav .navTab{
+  float: right;
+  padding-top:150px;
+  width: 0;
+  height: 100%;
+  background: #fff;
+  animation: rightOut .3s linear 0s 1;
+  -webkit-animation: rightOut .3s linear 0s 1;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+}
+.ipadNav .navTab .navList{
+  width: 100%;
+  height: 57px;
+}
+.ipadNav .navTab .navList:hover{
+  background: #F9F9FB;
+}
+.ipadNav .navTab .navList a{
+  display: block;
+  line-height: 57px;
+  text-align: center;
+  font-size: 14px;
+  color: #333435;
+  font-weight: bold;
+}
+.ipadNav .navTab .navList .active{
+  color: #4B4DFF;
+}
+.ipadNav .navTab .navList a:hover{
+  color: #4B4DFF;
+}
+.ipadNav .navTab .line{
+  margin: 20px auto;
+  width: 30px;
+  height: 1px;
+  background: #D8D8D8;
+}
+@keyframes rightOut {
+  from{
+    width: 0;
+  }
+  to {
+    width: 300px;
+    height: 100%;
+  }
+}
+@-webkit-keyframes rightOut {
+  from{
+    width: 0;
+  }
+  to {
+    width: 300px;
+    height: 100%;
+  }
+}
+@media (max-width: 415px) {
+  @keyframes rightOut {
+    from{
+      width: 0;
+    }
+    to {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  @-webkit-keyframes rightOut {
+    from{
+      width: 0;
+    }
+    to {
+      width: 100%;
+      height: 100%;
+    }
   }
 }

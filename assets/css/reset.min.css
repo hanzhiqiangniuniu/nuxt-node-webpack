@@ -10,7 +10,7 @@ body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, button,
 body {
   font-size: 12px;
   font-style: normal;
-  font-family:AvenirNext-Regular,"\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+  font-family:AvenirNext-Regular, Helvetica,"\5FAE\8F6F\96C5\9ED1",sans-serif;
 }
 small {
   font-size: 12px
@@ -180,5 +180,10 @@ button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focus
 }
 *, *:before, *:after{
   box-sizing: content-box;
+}
+@media (max-width: 415px) {
+  body{
+    overflow-x: hidden;
+  }
 }
 
